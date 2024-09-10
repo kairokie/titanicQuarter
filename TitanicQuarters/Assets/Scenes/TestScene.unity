@@ -1134,11 +1134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e6a57e196d15c49b6e9e6e1ac0ddbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMorseWord: 
-  _currentTestText: 0
-  _currentLetterIndex: 0
-  _currentText: 
-  _feedbackTextDisplay: {fileID: 0}
+  _textDisplay: {fileID: 896534682}
+  _questionTextDisplay: {fileID: 917167354}
+  _feedbackTextDisplay: {fileID: 840871730}
 --- !u!114 &1270041572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,9 +1149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b3b6934dd395c4ebf33f15186784e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textDisplay: {fileID: 896534682}
-  _questionTextDisplay: {fileID: 917167354}
-  _feedbackTextDisplay: {fileID: 840871730}
   _telegraph: {fileID: 1270041571}
 --- !u!4 &1270041573
 Transform:
@@ -1206,6 +1201,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: T_GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6401474888141388783, guid: 431a73f13d68e2e4c8acc82f1ef38101, type: 3}
+      propertyPath: _telegraph
+      value: 
+      objectReference: {fileID: 1270041571}
+    - target: {fileID: 6401474888141388783, guid: 431a73f13d68e2e4c8acc82f1ef38101, type: 3}
+      propertyPath: _inputListener
+      value: 
+      objectReference: {fileID: 1270041572}
     - target: {fileID: 8561293901828501499, guid: 431a73f13d68e2e4c8acc82f1ef38101, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.8
