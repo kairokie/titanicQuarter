@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-enum GameMode
+public enum GameMode
 {
     MAIL,
     TELEGRAPH,
@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
     {
         if (_telegraph)
         {
-            _telegraph.OnCorrectWord += _scoreManager.IncrementScore;
-            _telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
-            _telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
+            //_telegraph.OnCorrectWord += _scoreManager.IncrementScore;
+            //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
+            //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
     }
 
