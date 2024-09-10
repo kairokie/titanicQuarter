@@ -13,6 +13,8 @@ public class WordMachine : Machine
      */
 
     [SerializeField]
+    FrustrationManager _frustrationManager;
+    
     public List<Word> Words = new List<Word>();
     protected string _currentMachineWord;
 
@@ -63,6 +65,7 @@ public class WordMachine : Machine
         _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
+        _frustrationManager.DecrementFrustration();
     }
 
     void IncorrectWord()

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +6,17 @@ public class FrustrationManager : MonoBehaviour
 {
 
     private Slider _slider;
+    
+    [SerializeField]    
+    Image _fill;
+
+    [SerializeField]
+    Color _colorStart;
+    [SerializeField]
+    Color _colorEnd;
+
+    [SerializeField]
+    AnimationCurve _curve;
 
     // Clamped between 0 and 1
     float _frustration
@@ -41,11 +49,17 @@ public class FrustrationManager : MonoBehaviour
     {
         // Increment frustration
         _frustration += _frustrationPerSeconds / 100f * Time.deltaTime;
+        UpdateFrustrationColor();
     }
 
     public void DecrementFrustration()
     {
         // Decrement frustration
         _frustration -= _frustrationLossOnWin / 100f;
+    }
+
+    public void UpdateFrustrationColor()
+    {
+        _fill.color = Color.Lerp(_colorStart, _colorEnd, _curve.Evaluate(_frustration));
     }
 }
