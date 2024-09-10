@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     // Machines 
     [SerializeField]
     private Telegraph _telegraph;
+    [SerializeField]
+    private Mail _mail;
 
     // Managers
     [SerializeField]
@@ -26,8 +28,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private FrustrationManager _frustrationManager;
 
-    [SerializeField]
+    [SerializeField] // TODO : Currently unused and prefer to use the _currentMachine
     GameMode _gameMode;
+
+    public Machine _currentMachine;
 
 
   
@@ -42,12 +46,24 @@ public class GameManager : MonoBehaviour
             //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
             //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
+        ChangeGameMode(_telegraph);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ChangeGameMode(Machine nextMachine)
+    {
+        if(_currentMachine)
+        {
+            _currentMachine.isActivated = false; 
+        }
+        // TODO : add the camera switch
+        _currentMachine = nextMachine;
+        _currentMachine.isActivated = true;
     }
 
 

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Telegraph : MonoBehaviour
+public class Telegraph : Machine
 {
     /*
      - Has a list of morse code strings to reproduce
@@ -65,7 +66,7 @@ public class Telegraph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseInputDetection();
+        InputDetection();
         if (_textDisplay != null  )
         {
             _textDisplay.text = CurrentText;
@@ -152,8 +153,10 @@ public class Telegraph : MonoBehaviour
         Debug.Log("Typing Error");
     }
 
-    void MouseInputDetection()
+    protected override void InputDetection()
     {
+        if (!_isActivated) return;
+        base.InputDetection();
         if (Input.GetMouseButtonDown(0))
         {
             // "Dot " in morse code
