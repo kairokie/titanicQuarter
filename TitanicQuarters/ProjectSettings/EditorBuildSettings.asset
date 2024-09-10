@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Users/JackTest/cinemachineTest.unity
+    guid: d44e30562a9c7a04cabfbfcd2ac3092c
   m_configObjects: {}
