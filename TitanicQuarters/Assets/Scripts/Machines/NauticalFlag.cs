@@ -18,7 +18,10 @@ public class NauticalFlag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (eventData.pointerCurrentRaycast.isValid)
+        {
+            transform.position = eventData.pointerCurrentRaycast.worldPosition;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

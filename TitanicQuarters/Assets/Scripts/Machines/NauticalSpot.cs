@@ -17,11 +17,12 @@ public class NauticalSpot : MonoBehaviour, IDropHandler
         {
             if (_attachedFlag)
             {
-                float dist = GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
+                float dist = GetComponent<RectTransform>().sizeDelta.y + _distanceBetweenSpots;
+                dist *= transform.parent.lossyScale.y;
 
                 _attachedFlag._attachedSpot = null;
                 _attachedFlag.transform.SetParent(transform.parent, true);
-                _attachedFlag.transform.position = transform.position + new Vector3(0, dist, 0);
+                _attachedFlag.transform.position = transform.position + transform.parent.up * dist;
                 _attachedFlag = null;
             }
 
