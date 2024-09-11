@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +27,7 @@ public class FrustrationManager : MonoBehaviour
     }
 
     [SerializeField]
-    private float _frustrationLossOnWin;
+    private List<int> _frustrationLossPerSize;
 
     [SerializeField]
     [Tooltip("In percents")]
@@ -52,10 +53,18 @@ public class FrustrationManager : MonoBehaviour
         UpdateFrustrationColor();
     }
 
-    public void DecrementFrustration()
+    public void DecrementFrustrationWithWordSize(int size)
     {
-        // Decrement frustration
-        _frustration -= _frustrationLossOnWin / 100f;
+        if (size <= 0) return;
+
+        if (size <= _frustrationLossPerSize.Count)
+        {
+            _frustration -= _frustrationLossPerSize[size-1] / 100f;
+        }
+        else
+        {
+            _frustration -= _frustrationLossPerSize[_frustrationLossPerSize.Count-1] / 100f;
+        }
     }
 
     public void UpdateFrustrationColor()

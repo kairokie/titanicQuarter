@@ -5,9 +5,10 @@ using UnityEngine;
 public class Machine : MonoBehaviour
 {
 
-    // Activated 
-    protected bool _isActivated = false;
-    public bool isActivated { get => _isActivated; set => _isActivated = value; }
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {

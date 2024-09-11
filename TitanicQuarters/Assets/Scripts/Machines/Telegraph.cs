@@ -26,6 +26,7 @@ public class Telegraph : WordMachine
     // Start is called before the first frame update
     void Start()
     {
+        _doMatchToLatin = false;
         _machineLanguage = Alphabets.MORSE;
         Words.Add(new Word("a"));
         Words.Add(new Word("test"));
@@ -96,7 +97,6 @@ public class Telegraph : WordMachine
 
     protected override void InputDetection()
     {
-        if (!_isActivated) return;
         base.InputDetection();
         if (Input.GetMouseButtonDown(0))
         {

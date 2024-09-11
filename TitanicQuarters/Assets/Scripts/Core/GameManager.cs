@@ -13,6 +13,8 @@ public enum GameMode
     MILITARY,
     NAUTIC
 }
+
+[RequireComponent(typeof(ScoreManager))]
 public class GameManager : MonoBehaviour
 {
 
@@ -20,21 +22,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Telegraph _telegraph;
     [SerializeField]
+    private Military _military;
+    [SerializeField]
+    private Nautical _nautical;
+    [SerializeField]
     private Mail _mail;
 
     // Managers
     [SerializeField]
-    private InputListener _inputListener;
-    [SerializeField]
     private ScoreManager _scoreManager;
     [SerializeField]
     private FrustrationManager _frustrationManager;
+    [SerializeField]
+    private CameraManager _cameraManager;
 
     [SerializeField] // TODO : Currently unused and prefer to use the _currentMachine
     GameMode _gameMode;
 
     public Machine _currentMachine;
-    Dictionary<Machine, Vector3> cameraPositions;
 
 
 
@@ -42,58 +47,91 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _scoreManager = GetComponent<ScoreManager>();
 
-         cameraPositions = new Dictionary<Machine, Vector3>()
-    {
-        {_telegraph,new Vector3(0,1,-310)},
-        {_mail, new Vector3(155,1,-544)},
-    };
+        _cameraManager = FindObjectOfType<CameraManager>();
+  
         if (_telegraph)
         {
             //_telegraph.OnCorrectWord += _scoreManager.IncrementScore;
             //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
             //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
-        ChangeGameMode(_telegraph);
+        _mail.gameObject.SetActive(false);
+        _telegraph.gameObject.SetActive(false);
+        _military.gameObject.SetActive(false);
+        //_nautical.gameObject.SetActive(false);
+
+        if (_currentMachine)
+        {
+            ChangeGameMode(_currentMachine);
+        }
+        else
+        {
+            ChangeGameMode(_mail);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        InputDetection();   
     }
 
     public void ChangeGameMode(Machine nextMachine)
     {
         if(_currentMachine)
         {
-            _currentMachine.isActivated = false; 
+            _currentMachine.gameObject.SetActive(false);
         }
         // TODO : add the camera switch
         _currentMachine = nextMachine;
-        Vector3 position;  
-        cameraPositions.TryGetValue(_currentMachine,out position);
-        Debug.Log("New Vector position " + position);
-        Camera.main.transform.position = position;
-        _currentMachine.isActivated = true;
+        if (_cameraManager)
+        {
+            _cameraManager.SwitchCam(MachineToCameraMode());
+        }
+        _currentMachine.gameObject.SetActive(true);
     }
 
-
-    public void readTextFile()
+    private void InputDetection()
     {
-        string path = "Assets/Resources/WordList.txt";
-        StreamReader reader = new StreamReader(path);
-        string line;
-        while ((line = reader.ReadLine()) != null)
+        if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if (line.All(char.IsLetter))
-            {
-                Debug.Log(line);
-                //_textFile.Add(line);
-                //Words.Add(new Word(line, Alphabets.LATIN));
-            }
+            ChangeGameMode(_telegraph);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            ChangeGameMode(_military);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            //ChangeGameMode(_nautical);
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            ChangeGameMode(_mail);
         }
     }
+
+    private CameraMode MachineToCameraMode()
+    {
+        switch (_currentMachine)
+        {
+            case Telegraph telegraph:
+                return CameraMode.MORSE;
+            case Military military:
+                return CameraMode.MILITAIRE;
+            case Nautical nautical:
+                return CameraMode.NAUTIQUE;
+            case Mail mail:
+                return CameraMode.MENU;
+            default:
+                return CameraMode.GLOBAL;
+        }
+    }
+
+
+    
 
 
 
