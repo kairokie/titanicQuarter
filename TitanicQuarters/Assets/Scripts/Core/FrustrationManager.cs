@@ -55,16 +55,19 @@ public class FrustrationManager : MonoBehaviour
 
     public void DecrementFrustrationWithWordSize(int size)
     {
-        if (size <= 0) return;
+        if (size <= 1) return;
 
         if (size <= _frustrationLossPerSize.Count)
         {
-            _frustration -= _frustrationLossPerSize[size-1] / 100f;
+            _frustration -= _frustrationLossPerSize[size-2] / 100f;
         }
         else
         {
-            _frustration -= _frustrationLossPerSize[_frustrationLossPerSize.Count-1] / 100f;
+            _frustration -= _frustrationLossPerSize[_frustrationLossPerSize.Count-2] / 100f;
         }
+
+        UpdateFrustrationColor();
+
     }
 
     public void UpdateFrustrationColor()

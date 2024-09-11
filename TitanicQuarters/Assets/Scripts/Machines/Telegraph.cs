@@ -23,16 +23,19 @@ public class Telegraph : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
 
+    private float _errorDelay;
+
+    [SerializeField]
+    private float _errorDelayMax = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
         _doMatchToLatin = false;
         _machineLanguage = Alphabets.MORSE;
-        Words.Add(new Word("a"));
-        Words.Add(new Word("test"));
-        Words.Add(new Word("arbre"));
-        _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
-        _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
+        _mails.Add(CreateLetter("sst"));
+        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
+        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
 
         OnCorrectWord += CorrectWordDisplay;
         OnCorrectLetter += Correct;
@@ -44,11 +47,15 @@ public class Telegraph : WordMachine
     void Update()
     {
         InputDetection();
-        if (_textDisplay != null  )
+        if (_errorDelay > 0)
+        {
+            _errorDelay -= Time.deltaTime;
+        }
+        if (_textDisplay != null)
         {
             _textDisplay.text = _currentText;
         }
-        if (_questionTextDisplay != null  )
+        if (_questionTextDisplay != null)
         {
             _questionTextDisplay.text = CurrentLatinWord;
         }
@@ -92,12 +99,31 @@ public class Telegraph : WordMachine
     public void typingError()
     {
         OnIncorrectLetter?.Invoke();
-        Debug.Log("Typing Error");
+        ErrorTimeout();
+        while (_currentLetterIndex > 0)
+        {
+            if (_currentText.ElementAt(_currentLetterIndex - 1) == ' ')
+            {
+                break;
+            }
+            _currentLetterIndex--;
+        }
+        _currentText = _currentText.Substring(0, _currentLetterIndex);
+        Debug.Log("Typing Error " + _currentLetterIndex + " new substring " + _currentText);
+    }
+
+    private void ErrorTimeout()
+    {
+        _errorDelay = _errorDelayMax;
     }
 
     protected override void InputDetection()
     {
         base.InputDetection();
+        if (_errorDelay > 0)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             // "Dot " in morse code

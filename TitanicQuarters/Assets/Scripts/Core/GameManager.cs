@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     private Mail _mail;
 
     // Managers
-    [SerializeField]
     private ScoreManager _scoreManager;
     [SerializeField]
     private FrustrationManager _frustrationManager;
@@ -57,7 +56,6 @@ public class GameManager : MonoBehaviour
             //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
             //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
-        _mail.gameObject.SetActive(false);
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
         //_nautical.gameObject.SetActive(false);
@@ -80,9 +78,17 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGameMode(Machine nextMachine)
     {
-        if(_currentMachine)
+        if (_currentMachine)
         {
-            _currentMachine.gameObject.SetActive(false);
+            if (_currentMachine is Mail)
+            {
+                Mail mail = _currentMachine as Mail;
+                mail.IsActivated = false;
+            }
+            else
+            {
+                _currentMachine.gameObject.SetActive(false);
+            }
         }
         // TODO : add the camera switch
         _currentMachine = nextMachine;
@@ -90,7 +96,15 @@ public class GameManager : MonoBehaviour
         {
             _cameraManager.SwitchCam(MachineToCameraMode());
         }
-        _currentMachine.gameObject.SetActive(true);
+        if (_currentMachine is Mail)
+        {
+            Mail mail = _currentMachine as Mail;
+            mail.IsActivated = true;
+        }
+        else
+        {
+            _currentMachine.gameObject.SetActive(true);
+        }
     }
 
     private void InputDetection()

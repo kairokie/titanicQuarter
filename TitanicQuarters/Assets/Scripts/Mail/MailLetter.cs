@@ -25,9 +25,46 @@ public class MailLetter : MonoBehaviour
     [SerializeField]
     private string _wordTest;
 
+    [SerializeField]
+    private string _machineName;
+
+    public MailLetter(string word)
+    {
+        _word = new Word(word);
+    }
+
     private void Awake()
     {
+        int machineIndex = 0;
+        machineIndex = Random.Range(0, 2);
+        if (machineIndex == 0 || true)
+        {
+            _machine = FindObjectOfType<Telegraph>(true);
+            _machineName = "Telegraph";
+        }
+        else
+        {
+            _machine = FindObjectOfType<Military>(true);
+            _machineName = "Military";
+        }
+    }
 
+    public void PickLetter()
+    {
+        Collider [] colliders = gameObject.GetComponents<Collider>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
+        }
+    }
+
+    public void DropLetter()
+    {
+        Collider[] colliders = gameObject.GetComponents<Collider>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = true;
+        }
     }
 
     // Start is called before the first frame update
