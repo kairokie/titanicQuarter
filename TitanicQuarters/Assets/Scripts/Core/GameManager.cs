@@ -85,21 +85,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void readTextFile()
-    {
-        string path = "Assets/Resources/WordList.txt";
-        StreamReader reader = new StreamReader(path);
-        string line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            if (line.All(char.IsLetter))
-            {
-                Debug.Log(line);
-                //_textFile.Add(line);
-                //Words.Add(new Word(line, Alphabets.LATIN));
-            }
-        }
-    }
+    
 
 
 

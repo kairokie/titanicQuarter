@@ -13,7 +13,6 @@ public enum Alphabets
     NAUTIC,
     MILITARY,
 }
-
 public class Word
 {
     string _latinWord { get; }
