@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Machine : MonoBehaviour
 {
-
-    // Activated 
-    protected bool _isActivated = false;
-    public bool isActivated { get => _isActivated; set => _isActivated = value; }
     // Start is called before the first frame update
     void Start()
     {

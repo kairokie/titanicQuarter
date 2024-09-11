@@ -20,11 +20,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Telegraph _telegraph;
     [SerializeField]
+    private Military _military;
+    [SerializeField]
+    private Nautical _nautical;
+    [SerializeField]
     private Mail _mail;
 
     // Managers
-    [SerializeField]
-    private InputListener _inputListener;
     [SerializeField]
     private ScoreManager _scoreManager;
     [SerializeField]
@@ -54,7 +56,11 @@ public class GameManager : MonoBehaviour
             //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
             //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
-        ChangeGameMode(_telegraph);
+        _mail.gameObject.SetActive(false);
+        _telegraph.gameObject.SetActive(false);
+        _military.gameObject.SetActive(false);
+        //_nautical.gameObject.SetActive(false);
+        ChangeGameMode(_military);
     }
 
     // Update is called once per frame
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour
     {
         if(_currentMachine)
         {
-            _currentMachine.isActivated = false; 
+            _currentMachine.gameObject.SetActive(false);
         }
         // TODO : add the camera switch
         _currentMachine = nextMachine;
@@ -75,7 +81,7 @@ public class GameManager : MonoBehaviour
         cameraPositions.TryGetValue(_currentMachine,out position);
         Debug.Log("New Vector position " + position);
         Camera.main.transform.position = position;
-        _currentMachine.isActivated = true;
+        _currentMachine.gameObject.SetActive(true);
     }
 
 

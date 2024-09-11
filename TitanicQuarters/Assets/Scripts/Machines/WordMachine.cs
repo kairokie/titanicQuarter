@@ -19,6 +19,7 @@ public class WordMachine : Machine
     protected string _currentMachineWord;
 
     protected Alphabets _machineLanguage = Alphabets.NONE;
+    protected bool _doMatchToLatin = false;
 
     public string CurrentMachineWord { get => _currentMachineWord; set => _currentMachineWord = value; }
 
@@ -45,7 +46,8 @@ public class WordMachine : Machine
     public void SendWord()
     {
         Debug.Log("Word: " + _currentText);
-        if (_currentText == _currentMachineWord)
+        Debug.Log("Expected Word: " + (_doMatchToLatin ? _currentLatinWord : _currentMachineWord));
+        if (_currentText == (_doMatchToLatin ? _currentLatinWord : _currentMachineWord))
         {
             CorrectWord();
         }
@@ -58,7 +60,6 @@ public class WordMachine : Machine
 
     void CorrectWord()
     {
-        print(_machineLanguage);
         _currentTestText++;
         _currentTestText %= Words.Count;
         _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);

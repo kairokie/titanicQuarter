@@ -25,7 +25,6 @@ public class Mail : Machine
 
     protected override void InputDetection() 
     {
-        if (!_isActivated) return;
        base.InputDetection();
        if (Input.GetMouseButtonDown(0))
         {
