@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
             { CameraMode.GLOBAL, camGlobal },
             { CameraMode.MORSE, camMorse },
             { CameraMode.MILITAIRE, camMilitaire },
-            //{ CameraMode.NAUTIQUE, camNautique }
+            { CameraMode.NAUTIQUE, camNautique }
         };
 
         camList[CameraMode.MENU].SetActive(true);

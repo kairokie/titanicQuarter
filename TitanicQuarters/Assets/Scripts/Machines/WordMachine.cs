@@ -52,6 +52,12 @@ public class WordMachine : Machine
     //TEST SERIALIZED FIELDS
     [SerializeField]
     float _wordCount = 0;
+
+
+    public void Awake()
+    {
+        gameObject.SetActive(false);
+    }
     public void SendWord()
     {
         Debug.Log("Word: " + _currentText);
@@ -102,7 +108,6 @@ public class WordMachine : Machine
 
     public bool TryPutMail(MailLetter mail)
     {
-        Debug.Log("TryPutMail in WordMachine");
         if (mail.Machine == this && MaxMails >= _mails.Count)
         {
             AddMail(mail);

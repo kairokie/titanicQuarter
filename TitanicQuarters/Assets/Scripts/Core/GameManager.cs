@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         }
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
-        //_nautical.gameObject.SetActive(false);
+        _nautical.gameObject.SetActive(false);
 
         if (_currentMachine)
         {
