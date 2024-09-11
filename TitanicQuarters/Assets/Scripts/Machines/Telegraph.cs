@@ -3,44 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Telegraph : MonoBehaviour
+public class Telegraph : WordMachine
 {
     /*
      - Has a list of morse code strings to reproduce
     - Interprets the given inputs
     - Checks if the inputs are correct
     - Gives feedback to the player
-     
-     
      */
-    [SerializeField]
-    public List<Word> Words = new List<Word>();
-    string _currentMorseWord;
 
-    public string CurrentMorseWord { get => _currentMorseWord; set => _currentMorseWord = value; }
-    
-    string _currentLatinWord;
 
-    public string CurrentLatinWord { get => _currentLatinWord; set => _currentLatinWord = value; }
-
-    // Reading indexes 
-
-    int _currentTestText = 0;
-    int _currentLetterIndex = 0;
-
-    //Current text
-    string _currentText = "";
-
-    public string CurrentText { get => _currentText; set => _currentText = value; }
-
-    // Action events
-    public Action OnCorrectWord;
-    public Action OnIncorrectWord;
-    public Action OnCorrectLetter;
-    public Action OnIncorrectLetter;
 
     // Temporary text display
     public TextMeshProUGUI _textDisplay;
@@ -50,10 +26,11 @@ public class Telegraph : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _machineLanguage = Alphabets.MORSE;
         Words.Add(new Word("a"));
         Words.Add(new Word("test"));
         Words.Add(new Word("arbre"));
-        _currentMorseWord = Words[_currentTestText].GetWord(Alphabets.MORSE);
+        _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
         _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
 
         OnCorrectWord += CorrectWordDisplay;
@@ -65,10 +42,10 @@ public class Telegraph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseInputDetection();
+        InputDetection();
         if (_textDisplay != null  )
         {
-            _textDisplay.text = CurrentText;
+            _textDisplay.text = _currentText;
         }
         if (_questionTextDisplay != null  )
         {
@@ -79,16 +56,16 @@ public class Telegraph : MonoBehaviour
 
     public void ReadChar(char c)
     {
-        if (_currentLetterIndex >= _currentMorseWord.Length)
+        if (_currentLetterIndex >= _currentMachineWord.Length)
         {
             Debug.Log("Word is complete");
             typingError();
             return;
         }
-        else if (_currentMorseWord.ElementAt(_currentLetterIndex) != c)
+        else if (_currentMachineWord.ElementAt(_currentLetterIndex) != c)
         {
             //print typed letter and expected letter
-            Debug.Log("Typed: " + c + " Expected: " + _currentMorseWord.ElementAt(_currentLetterIndex));
+            Debug.Log("Typed: " + c + " Expected: " + _currentMachineWord.ElementAt(_currentLetterIndex));
             typingError();
             return;
         }
@@ -97,48 +74,13 @@ public class Telegraph : MonoBehaviour
         CorrectLetter();
     }
 
-    public void SendWord()
-    {
-        Debug.Log("Word: " + _currentText);
-        if (_currentText == _currentMorseWord)
-        {
-            CorrectWord();
-        }
-        else
-        {
-            IncorrectWord();
-        }
-        ResetWord();
-    }
-
-    void CorrectWord()
-    {
-        _currentTestText++;
-        _currentTestText %= Words.Count;
-        _currentMorseWord = Words[_currentTestText].GetWord(Alphabets.MORSE);
-        _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
-        Debug.Log("Correct");
-        OnCorrectWord?.Invoke();
-    }
-
-    void IncorrectWord()
-    {
-        Debug.Log("Incorrect");
-        OnIncorrectWord?.Invoke();
-    }
-
-    void ResetWord()
-    {
-        _currentText = "";
-        _currentLetterIndex = 0;
-    }
 
     void CorrectLetter()
     {
-        _currentText += _currentMorseWord.ElementAt(_currentLetterIndex);
+        _currentText += _currentMachineWord.ElementAt(_currentLetterIndex);
         _currentLetterIndex++;
         // Check for spaces
-        if (_currentLetterIndex < _currentMorseWord.Length && _currentMorseWord.ElementAt(_currentLetterIndex) == ' ')
+        if (_currentLetterIndex < _currentMachineWord.Length && _currentMachineWord.ElementAt(_currentLetterIndex) == ' ')
         {
             _currentText += " ";
             _currentLetterIndex++;
@@ -152,8 +94,10 @@ public class Telegraph : MonoBehaviour
         Debug.Log("Typing Error");
     }
 
-    void MouseInputDetection()
+    protected override void InputDetection()
     {
+        if (!_isActivated) return;
+        base.InputDetection();
         if (Input.GetMouseButtonDown(0))
         {
             // "Dot " in morse code
@@ -172,23 +116,23 @@ public class Telegraph : MonoBehaviour
         }
     }
 
-    void Error()
+    public override void Error()
     {
         _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "";
     }
 
-    void Correct()
+    public override void Correct()
     {
         _textDisplay.color = Color.black;
         _feedbackTextDisplay.text = "";
     }
 
-    void CorrectWordDisplay()
+    public override void CorrectWordDisplay()
     {
         _feedbackTextDisplay.text = "Correct!";
     }
-    void ErrorWordDisplay()
+    public override void ErrorWordDisplay()
     {
         _feedbackTextDisplay.text = "Incorrect!";
     }
