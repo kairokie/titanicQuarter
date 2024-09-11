@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MailLetter : MonoBehaviour
 {
     Word _word;
     Vector3 Vector3 = new Vector3(162, -0, -529);
+
+    [SerializeField]
+    public TextMeshProUGUI _textDisplay;
 
     public Word Word
     {
@@ -36,17 +40,24 @@ public class MailLetter : MonoBehaviour
     private void Awake()
     {
         int machineIndex = 0;
-        machineIndex = Random.Range(0, 2);
-        if (machineIndex == 0 || true)
+        machineIndex = Random.Range(0, 3);
+        if (machineIndex == 0)
         {
             _machine = FindObjectOfType<Telegraph>(true);
             _machineName = "Telegraph";
         }
-        else
+        else if (machineIndex == 1)
         {
             _machine = FindObjectOfType<Military>(true);
             _machineName = "Military";
         }
+        else if (machineIndex == 2)
+        {
+            _machine = FindObjectOfType<Nautical>(true);
+            _machineName = "Nautical";
+        }
+        _machine = FindObjectOfType<Nautical>(true);
+        _machineName = "Nautical";
     }
 
     public void PickLetter()
@@ -70,7 +81,8 @@ public class MailLetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (_textDisplay != null)
+            _textDisplay.text = _machineName;
     }
 
     // Update is called once per frame

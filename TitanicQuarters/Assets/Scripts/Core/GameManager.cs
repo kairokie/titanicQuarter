@@ -138,9 +138,9 @@ public class GameManager : MonoBehaviour
             case Nautical nautical:
                 return CameraMode.NAUTIQUE;
             case Mail mail:
-                return CameraMode.MENU;
-            default:
                 return CameraMode.GLOBAL;
+            default:
+                return CameraMode.MENU ;
         }
     }
 

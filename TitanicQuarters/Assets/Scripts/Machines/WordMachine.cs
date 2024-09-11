@@ -38,6 +38,7 @@ public class WordMachine : Machine
 
     protected int _currentTestText = 0;
     protected int _currentLetterIndex = 0;
+    protected bool _isEmpty = true;
 
 
     //Current text
@@ -82,10 +83,20 @@ public class WordMachine : Machine
         _currentTestText %= _mails.Count;
         _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
         _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
-      
-        _mails.RemoveAt(0);
+
+        RemoveMail();
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
+    }
+
+    void RemoveMail()
+    {
+        _mails.RemoveAt(0);
+        _wordCount = _mails.Count;
+        if (_mails.Count == 0)
+        {
+            _isEmpty = true;
+        }
     }
 
     void IncorrectWord()
@@ -104,6 +115,7 @@ public class WordMachine : Machine
     {
         _mails.Add(mail);
         _wordCount = _mails.Count;
+        _isEmpty = false;
     }
 
     public bool TryPutMail(MailLetter mail)

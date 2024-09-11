@@ -120,7 +120,7 @@ public class Telegraph : WordMachine
     protected override void InputDetection()
     {
         base.InputDetection();
-        if (_errorDelay > 0)
+        if (_errorDelay > 0 || _isEmpty)
         {
             return;
         }

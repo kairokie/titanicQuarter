@@ -74,14 +74,18 @@ public class Nautical : WordMachine
 
 
         float dist = _nauticalSpotPrefab.GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
-        Vector3 halfSizeX = new Vector3(dist / 2f, 0, 0) * Mathf.Max(_currentLatinWord.Length - 1, 0);
+        dist *= _NauticalSpotCenterPosition.lossyScale.x;
+        Vector3 halfSizeX = _NauticalSpotCenterPosition.right * dist/2  * Mathf.Max(_currentLatinWord.Length - 1, 0);
         Vector3 leftPos = _NauticalSpotCenterPosition.position - halfSizeX;
-
+        //Debug.Log("Dist: " + dist + " | HalfSizeX: " + halfSizeX + " | LeftPos: " + leftPos);
+        
+        Debug.Log("NauticalSpotCenterPosition: " + (_NauticalSpotCenterPosition).localPosition);
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            Vector3 offset = new Vector3(dist, 0, 0) * i;
-            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, leftPos + offset, Quaternion.identity, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            Vector3 offset = _NauticalSpotCenterPosition.right * dist * i;
+            NauticalSpot spot = Instantiate(_nauticalSpotPrefab,  (leftPos + offset) , _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            Debug.Log("spot position" + spot.transform.position);
             spot._distanceBetweenSpots = _distanceBetweenSpots;
 
             _nauticalSpots.Add(spot);
@@ -89,9 +93,11 @@ public class Nautical : WordMachine
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _nauticalSpots[i].transform.position, Quaternion.identity, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
+            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _nauticalSpots[i].transform.position, _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
             flag._flagId = Langages.characterToInt(_currentLatinWord[i]);
             flag.GetComponent<Image>().sprite = _nauticalAlphabet[flag._flagId];
+            Debug.Log("flag position" + flag.transform.position);
+
 
             _nauticalFlags.Add(flag);
         }
@@ -105,6 +111,8 @@ public class Nautical : WordMachine
             _nauticalFlags[i]._attachedSpot = _nauticalSpots[i];
             _nauticalFlags[i]._attachedSpot._attachedFlag = _nauticalFlags[i];
         }
+        Debug.Log("_nauticalFlags[0].transform.position" + _nauticalFlags[0].transform.position);
+
     }
 
     protected override void InputDetection()
