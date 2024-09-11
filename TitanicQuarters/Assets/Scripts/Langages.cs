@@ -24,7 +24,7 @@ public class Word
         _latinWord = word;
         _morseWord = Langages.stringToMorse(word);
         _militaryWord = Langages.stringToMilitary(word);
-        //TODO : Add NAUTIC and MILITARY
+        //TODO : Add NAUTIC
     }
 
     public string GetWord(Alphabets _alphabets)

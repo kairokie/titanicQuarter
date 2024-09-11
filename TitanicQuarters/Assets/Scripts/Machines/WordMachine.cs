@@ -65,9 +65,7 @@ public class WordMachine : Machine
     {
         _frustrationManager?.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
         _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
-        print(CurrentLatinWord);
-        print(CurrentLatinWord.Length);
-
+        
         _currentTestText++;
         _currentTestText %= Words.Count;
         _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);

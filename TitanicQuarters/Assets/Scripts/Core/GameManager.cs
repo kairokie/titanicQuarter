@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     private Mail _mail;
 
     // Managers
-    [SerializeField]
     private ScoreManager _scoreManager;
     [SerializeField]
     private FrustrationManager _frustrationManager;

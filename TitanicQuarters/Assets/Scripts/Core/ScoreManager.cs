@@ -17,15 +17,15 @@ public class ScoreManager : MonoBehaviour
 
     public void IncrementScoreWithWordSize(int size)
     {
-        if (size <= 0) return;
+        if (size <= 1) return;
 
         if (size <= _scorePerWordSize.Count)
         {
-            _score += _scorePerWordSize[size-1];
+            _score += _scorePerWordSize[size-2];
         }
         else
         {
-            _score += _scorePerWordSize[_scorePerWordSize.Count-1];
+            _score += _scorePerWordSize[_scorePerWordSize.Count-2];
         }
 
         _scoreDisplay.text = "Score : " + _score.ToString();
