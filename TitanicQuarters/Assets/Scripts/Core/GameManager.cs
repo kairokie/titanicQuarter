@@ -31,12 +31,13 @@ public class GameManager : MonoBehaviour
     private ScoreManager _scoreManager;
     [SerializeField]
     private FrustrationManager _frustrationManager;
+    [SerializeField]
+    private CameraManager _cameraManager;
 
     [SerializeField] // TODO : Currently unused and prefer to use the _currentMachine
     GameMode _gameMode;
 
     public Machine _currentMachine;
-    Dictionary<Machine, Vector3> cameraPositions;
 
 
 
@@ -44,12 +45,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-         cameraPositions = new Dictionary<Machine, Vector3>()
-    {
-        {_telegraph,new Vector3(0,1,-310)},
-        {_mail, new Vector3(155,1,-544)},
-    };
+        _cameraManager = FindObjectOfType<CameraManager>();
+  
         if (_telegraph)
         {
             //_telegraph.OnCorrectWord += _scoreManager.IncrementScore;
@@ -66,7 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        InputDetection();   
     }
 
     public void ChangeGameMode(Machine nextMachine)
@@ -77,11 +74,48 @@ public class GameManager : MonoBehaviour
         }
         // TODO : add the camera switch
         _currentMachine = nextMachine;
-        Vector3 position;  
-        cameraPositions.TryGetValue(_currentMachine,out position);
-        Debug.Log("New Vector position " + position);
-        Camera.main.transform.position = position;
+        if (_cameraManager)
+        {
+            _cameraManager.SwitchCam(MachineToCameraMode());
+        }
         _currentMachine.gameObject.SetActive(true);
+    }
+
+    private void InputDetection()
+    {
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            ChangeGameMode(_telegraph);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            ChangeGameMode(_military);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            //ChangeGameMode(_nautical);
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            ChangeGameMode(_mail);
+        }
+    }
+
+    private CameraMode MachineToCameraMode()
+    {
+        switch (_currentMachine)
+        {
+            case Telegraph telegraph:
+                return CameraMode.MORSE;
+            case Military military:
+                return CameraMode.MILITAIRE;
+            case Nautical nautical:
+                return CameraMode.NAUTIQUE;
+            case Mail mail:
+                return CameraMode.MENU;
+            default:
+                return CameraMode.GLOBAL;
+        }
     }
 
 

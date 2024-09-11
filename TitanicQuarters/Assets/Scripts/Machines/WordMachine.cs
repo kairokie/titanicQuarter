@@ -66,7 +66,8 @@ public class WordMachine : Machine
         _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
-        _frustrationManager.DecrementFrustration();
+        if (_frustrationManager != null)
+            _frustrationManager.IncrementFrustration();
     }
 
     void IncorrectWord()

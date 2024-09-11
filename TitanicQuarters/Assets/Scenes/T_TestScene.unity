@@ -882,6 +882,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917167352}
   m_CullTransparentMesh: 1
+--- !u!1 &1102424778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102424780}
+  - component: {fileID: 1102424779}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1102424779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102424778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b220ab4c69f3e48a825c0e899ccf84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camMenu: {fileID: 0}
+  camGlobal: {fileID: 0}
+  camMorse: {fileID: 0}
+  camMilitaire: {fileID: 0}
+  camNautique: {fileID: 0}
+--- !u!4 &1102424780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102424778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.1912, y: 7.0887384, z: -511.5156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1270041570
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b3b6934dd395c4ebf33f15186784e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _telegraph: {fileID: 1270041571}
 --- !u!4 &1270041573
 Transform:
   m_ObjectHideFlags: 0
@@ -1056,6 +1104,12 @@ MonoBehaviour:
   _timeToFollowMouse: 0.1
   _nextMailPosition: {x: 0, y: 0, z: 0}
   _oldMailPosition: {x: 0, y: 0, z: 0}
+  _mailOvermovementCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1363019330
 Transform:
   m_ObjectHideFlags: 0
@@ -1320,3 +1374,4 @@ SceneRoots:
   - {fileID: 1363019330}
   - {fileID: 152037777282566466}
   - {fileID: 1851947677}
+  - {fileID: 1102424780}
