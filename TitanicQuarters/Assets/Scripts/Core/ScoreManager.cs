@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+
+    [SerializeField]
+    public List<int> _scorePerWordSize;
+
     [SerializeField]
     private int _score = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private TextMeshProUGUI _scoreDisplay;
 
-    public void IncrementScore()
+    public void IncrementScoreWithWordSize(int size)
     {
-        // Increment score
+        if (size <= 0) return;
+
+        if (size <= _scorePerWordSize.Count)
+        {
+            _score += _scorePerWordSize[size-1];
+        }
+        else
+        {
+            _score += _scorePerWordSize[_scorePerWordSize.Count-1];
+        }
+
+        _scoreDisplay.text = "Score : " + _score.ToString();
     }
 }
