@@ -17,8 +17,11 @@ public class WordMachine : Machine
 
     [SerializeField]
     ScoreManager _scoreManager;
-    
-    public List<Word> Words = new List<Word>();
+
+    public List<MailLetter> _mails = new List<MailLetter>();
+    [SerializeField]
+    private float _maxWords = 50.0f;
+    public float MaxMails { get => _maxWords; set => _maxWords = value; }
     protected string _currentMachineWord;
 
     protected Alphabets _machineLanguage = Alphabets.NONE;
@@ -46,6 +49,9 @@ public class WordMachine : Machine
     public Action OnCorrectLetter;
     public Action OnIncorrectLetter;
 
+    //TEST SERIALIZED FIELDS
+    [SerializeField]
+    float _wordCount = 0;
     public void SendWord()
     {
         Debug.Log("Word: " + _currentText);
@@ -67,9 +73,11 @@ public class WordMachine : Machine
         _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
         
         _currentTestText++;
-        _currentTestText %= Words.Count;
-        _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
-        _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
+        _currentTestText %= _mails.Count;
+        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
+        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
+      
+        _mails.RemoveAt(0);
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
     }
@@ -79,11 +87,41 @@ public class WordMachine : Machine
         Debug.Log("Incorrect");
         OnIncorrectWord?.Invoke();
     }
+
     void ResetWord()
     {
         _currentText = "";
         _currentLetterIndex = 0;
     }
+
+    public void AddMail(MailLetter mail)
+    {
+        _mails.Add(mail);
+        _wordCount = _mails.Count;
+    }
+
+    public bool TryPutMail(MailLetter mail)
+    {
+        Debug.Log("TryPutMail in WordMachine");
+        if (mail.Machine == this && MaxMails >= _mails.Count)
+        {
+            AddMail(mail);
+            return true;
+        }
+        else
+        {
+            Debug.Log("mail.Machine: " + mail.Machine + " | this =  " + this + " MaxWords = " + MaxMails);
+        }
+        return false;
+    }
+
+    protected MailLetter CreateLetter(string word)
+    {
+        MailLetter mail = gameObject.AddComponent<MailLetter>();
+        mail.Word = new Word(word);
+        return mail;
+    }
+  
 
     public virtual void Error()
     {

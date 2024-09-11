@@ -23,10 +23,15 @@ public class Mail : Machine
     [SerializeField]
     float _pickedMailDistanceToCamera = 10.0f;
 
+    // List of all possible words
+    List<Word> _AllWords = new List<Word>();
+    public List<Word> Words { get => _AllWords; }
 
-    List<Word> Words = new List<Word>();
 
-
+    // Input detection
+    [SerializeField]
+    bool _isActivated = true;
+    public bool IsActivated { get => _isActivated; set => _isActivated = value; }
 
     // Letter picked
     public MailLetter _pickedLetter = null;
@@ -46,6 +51,7 @@ public class Mail : Machine
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,78 +65,71 @@ public class Mail : Machine
         InputDetection();
     }
 
+    
+
     protected override void InputDetection()
     {
         base.InputDetection();
+        if(!_isActivated) return;
         if (_pickedLetter)
         {
-            Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;
-            ////Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Camera.main.transform.forward * 2;
-            //Debug.Log(proj + " | " + Input.mousePosition);
-            //_pickedLetter.transform.position = proj;
-
-            if (proj != _nextMailPosition)
-            {
-                _nextMailPosition = proj;
-                _oldMailPosition = _pickedLetter.transform.position;
-                if (_mailMovementCoroutine != null)
-                {
-                    StopCoroutine(_mailMovementCoroutine);
-                    _mailMovementCoroutine = null;
-                }
-                _mailMovementCoroutine = StartCoroutine(mailMovementCoroutine());
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                _pickedLetter = null;
-            }
+            MoveMail();
         }
-        else
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            MouseRaycast();
+        }
+    }
+
+    public void MouseRaycast()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider != null)
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit))
+                MailLetter mailClicked = hit.collider.gameObject.GetComponent<MailLetter>();
+                WordMachine machineClicked = hit.collider.gameObject.GetComponentInChildren<WordMachine>(true);
+                // Check if mail clicked
+                if (!_pickedLetter)
                 {
-                    if (hit.collider != null)
+                    if (mailClicked)
                     {
-                        // Check if mail clicked
-                        MailLetter mailClicked = hit.collider.gameObject.GetComponent<MailLetter>();
-                        if (mailClicked)
-                        {
-                            _pickedLetter = mailClicked;
-                            // TODO : send mail to machine
-                            return;
-                        }
-                        // else check if machine clicked
-                        Machine machineClicked = hit.collider.gameObject.GetComponent<Machine>();
-                        if (machineClicked)
-                        {
-                            // TODO : send mail to machine
-                            if (false)
-                            {
-
-                            }
-                            else
-                            {
-                                GameManager gameManager = FindObjectOfType<GameManager>();
-                                gameManager.ChangeGameMode(machineClicked);
-                            }
-                        }
-
+                        _pickedLetter = mailClicked;
+                        _pickedLetter.PickLetter();
+                        return;
+                    }
+                    //else check if machine clicked and change game mode
+                    else if (machineClicked)
+                    {
+                        GameManager gameManager = FindObjectOfType<GameManager>();
+                        gameManager.ChangeGameMode(machineClicked);
+                    }
+                }
+                else
+                {
+                    // else check if machine clicked
+                    if (machineClicked)
+                    {
+                        TryPutMail(machineClicked, _pickedLetter);
+                    }
+                    else if (true /* table test */)
+                    {
+                        Debug.Log("Mail dropped on table");
+                        _pickedLetter.DropLetter();
+                        _pickedLetter = null;
                     }
                 }
             }
         }
-
     }
 
 
     IEnumerator LetterArrivalCoroutine(float timeBetween)
     {
         //if (!_isActivated) ;
+        Debug.Log("LetterArrivalCoroutine started");
         while (_isRunning)
         {
             if (_letterPrefab1)
@@ -139,15 +138,48 @@ public class Mail : Machine
                 MailLetter mailLetter = letter.GetComponent<MailLetter>();
                 if (mailLetter)
                 {
-                    mailLetter.Word = Words[Random.Range(0, Words.Count)];
+                    mailLetter.Word = _AllWords[Random.Range(0, _AllWords.Count)];
                 }
                 mailLetter.transform.position = transform.position + _mailOffset * _numberOfMails;
-                mailLetter.transform.rotation = Quaternion.Euler(-45f, 0, 0);
+                mailLetter.transform.rotation = Quaternion.Euler(-45f, -90, 0);
                 _numberOfMails++;
+            }
+            else
+            {
+                Debug.Log("NO LETTER PREFABS");
             }
             yield return new WaitForSeconds(timeBetween);
         }
 
+    }
+
+    private void MoveMail()
+    {
+        Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;
+
+        if (proj != _nextMailPosition)
+        {
+            _nextMailPosition = proj;
+            _oldMailPosition = _pickedLetter.transform.position;
+            if (_mailMovementCoroutine != null)
+            {
+                StopCoroutine(_mailMovementCoroutine);
+                _mailMovementCoroutine = null;
+            }
+            _mailMovementCoroutine = StartCoroutine(mailMovementCoroutine());
+        }
+    }
+
+    void TryPutMail(WordMachine machine, MailLetter mail)
+    {
+        Debug.Log("TryPutMail in Mail");
+        if (machine.TryPutMail(mail))
+        {
+            
+            mail.DropLetter();
+            Destroy(mail.gameObject);
+            _pickedLetter = null;
+        }
     }
 
     IEnumerator mailMovementCoroutine()
@@ -182,7 +214,7 @@ public class Mail : Machine
         {
             if (line.All(char.IsLetter))
             {
-                Words.Add(new Word(line.ToLower()));
+                _AllWords.Add(new Word(line.ToLower()));
             }
         }
     }

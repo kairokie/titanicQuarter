@@ -33,10 +33,9 @@ public class Telegraph : WordMachine
     {
         _doMatchToLatin = false;
         _machineLanguage = Alphabets.MORSE;
-        Words.Add(new Word("sst"));
-        Words.Add(new Word("arbre"));
-        _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
-        _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
+        _mails.Add(CreateLetter("sst"));
+        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
+        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
 
         OnCorrectWord += CorrectWordDisplay;
         OnCorrectLetter += Correct;

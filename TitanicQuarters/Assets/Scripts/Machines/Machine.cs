@@ -7,7 +7,7 @@ public class Machine : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class Machine : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Backspace) && !(this is Mail))
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
-            Mail mail = FindObjectOfType<Mail>();
+            Mail mail = FindObjectOfType<Mail>(true);
             gameManager.ChangeGameMode(mail);
         }
         

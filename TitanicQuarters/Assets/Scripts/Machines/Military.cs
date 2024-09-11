@@ -16,11 +16,12 @@ public class Military : WordMachine
     {
         _doMatchToLatin = true;
         _machineLanguage = Alphabets.MILITARY;
-        Words.Add(new Word("a"));
-        Words.Add(new Word("test"));
-        Words.Add(new Word("arbre"));
-        _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
-        _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
+        
+        _mails.Add(CreateLetter("test"));
+        _mails.Add(CreateLetter("sst"));
+        _mails.Add(CreateLetter("arbre"));
+        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
+        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
 
         OnCorrectWord += CorrectWordDisplay;
         OnCorrectLetter += Correct;
