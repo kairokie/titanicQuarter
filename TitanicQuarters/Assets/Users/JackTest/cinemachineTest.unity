@@ -1061,6 +1061,7 @@ MonoBehaviour:
   _numberOfMails: 0
   _mailOffset: {x: 0.1, y: 0, z: 1}
   _pickedMailDistanceToCamera: 9
+  _isActivated: 1
   _pickedLetter: {fileID: 0}
   _timeToFollowMouse: 0.1
   _nextMailPosition: {x: 0, y: 0, z: 0}
@@ -1221,6 +1222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frustrationManager: {fileID: 0}
+  _scoreManager: {fileID: 0}
+  _mails: []
+  _maxWords: 50
+  _wordCount: 0
   _textDisplay: {fileID: 0}
   _questionTextDisplay: {fileID: 0}
   _feedbackTextDisplay: {fileID: 0}
@@ -2282,6 +2287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1124952324}
   - component: {fileID: 1124952323}
+  - component: {fileID: 1124952325}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -2366,6 +2372,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1124952325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124952322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1262024163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,7 +2472,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d9296ace355885444aaac5e06df16d18, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3915,9 +3944,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frustrationManager: {fileID: 0}
+  _scoreManager: {fileID: 0}
+  _mails: []
+  _maxWords: 50
+  _wordCount: 0
   _textDisplay: {fileID: 0}
   _questionTextDisplay: {fileID: 0}
   _feedbackTextDisplay: {fileID: 0}
+  _errorDelayMax: 0.5
 --- !u!1 &2140645494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,9 +3995,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frustrationManager: {fileID: 0}
+  _scoreManager: {fileID: 0}
+  _mails: []
+  _maxWords: 50
+  _wordCount: 0
   _textDisplay: {fileID: 842813634}
   _questionTextDisplay: {fileID: 69535940}
   _feedbackTextDisplay: {fileID: 2070807854}
+  _errorDelayMax: 0.5
 --- !u!4 &2140645497
 Transform:
   m_ObjectHideFlags: 0
