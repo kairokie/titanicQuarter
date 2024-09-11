@@ -5,8 +5,9 @@ using UnityEngine;
 
 public enum Alphabets
 {
-    MORSE, // Each character is separated by a space
+    NONE,
     LATIN,
+    MORSE, // Each character is separated by a space
     NAUTIC,
     MILITARY,
 }
@@ -27,10 +28,12 @@ public class Word
     {
         switch (_alphabets)
         {
-            case Alphabets.MORSE:
-                return _morseWord;
+            case Alphabets.NONE:
+                return "";
             case Alphabets.LATIN:
                 return _latinWord;
+            case Alphabets.MORSE:
+                return _morseWord;
             case Alphabets.NAUTIC:
                 return _latinWord;
             case Alphabets.MILITARY:
