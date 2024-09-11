@@ -206,7 +206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &193496012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1244,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144b6051373bdf541859199952178b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterPrefab1: {fileID: 0}
+  timeBetweenLetters: 5
+  _numberOfMails: 0
+  _mailOffset: {x: 0.1, y: 0, z: 1}
+  _pickedMailDistanceToCamera: 10
+  _pickedLetter: {fileID: 0}
+  _timeToFollowMouse: 0.1
+  _nextMailPosition: {x: 0, y: 0, z: 0}
+  _oldMailPosition: {x: 0, y: 0, z: 0}
+  _mailOvermovementCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1798444221
 Transform:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
         //_nautical.gameObject.SetActive(false);
-        ChangeGameMode(_military);
+        ChangeGameMode(_mail);
     }
 
     // Update is called once per frame

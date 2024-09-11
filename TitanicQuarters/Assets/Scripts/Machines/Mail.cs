@@ -61,8 +61,8 @@ public class Mail : Machine
 
     protected override void InputDetection()
     {
-       base.InputDetection();
-       if (Input.GetMouseButtonDown(0))
+        base.InputDetection();
+        if (_pickedLetter)
         {
             Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;
             ////Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + Camera.main.transform.forward * 2;
