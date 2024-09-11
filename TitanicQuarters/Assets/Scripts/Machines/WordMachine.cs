@@ -14,6 +14,9 @@ public class WordMachine : Machine
 
     [SerializeField]
     FrustrationManager _frustrationManager;
+
+    [SerializeField]
+    ScoreManager _scoreManager;
     
     public List<Word> Words = new List<Word>();
     protected string _currentMachineWord;
@@ -60,13 +63,17 @@ public class WordMachine : Machine
 
     void CorrectWord()
     {
+        _frustrationManager.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
+        _scoreManager.IncrementScoreWithWordSize(_currentLatinWord.Length);
+        print(CurrentLatinWord);
+        print(CurrentLatinWord.Length);
+
         _currentTestText++;
         _currentTestText %= Words.Count;
         _currentMachineWord = Words[_currentTestText].GetWord(_machineLanguage);
         _currentLatinWord = Words[_currentTestText].GetWord(Alphabets.LATIN);
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
-        _frustrationManager.DecrementFrustration();
     }
 
     void IncorrectWord()

@@ -13,6 +13,8 @@ public enum GameMode
     MILITARY,
     NAUTIC
 }
+
+[RequireComponent(typeof(ScoreManager))]
 public class GameManager : MonoBehaviour
 {
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _scoreManager = GetComponent<ScoreManager>();
 
          cameraPositions = new Dictionary<Machine, Vector3>()
     {
@@ -60,7 +63,15 @@ public class GameManager : MonoBehaviour
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
         //_nautical.gameObject.SetActive(false);
-        ChangeGameMode(_mail);
+
+        if (_currentMachine)
+        {
+            ChangeGameMode(_currentMachine);
+        }
+        else
+        {
+            ChangeGameMode(_mail);
+        }
     }
 
     // Update is called once per frame
