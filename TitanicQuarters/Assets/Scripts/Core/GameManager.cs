@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
             //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
         }
-        ChangeGameMode(_telegraph);
+        ChangeGameMode(_mail);
     }
 
     // Update is called once per frame
@@ -79,21 +79,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void readTextFile()
-    {
-        string path = "Assets/Resources/WordList.txt";
-        StreamReader reader = new StreamReader(path);
-        string line;
-        while ((line = reader.ReadLine()) != null)
-        {
-            if (line.All(char.IsLetter))
-            {
-                Debug.Log(line);
-                //_textFile.Add(line);
-                //Words.Add(new Word(line, Alphabets.LATIN));
-            }
-        }
-    }
+    
 
 
 
