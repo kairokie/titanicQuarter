@@ -1,23 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
-
-public class Telegraph : WordMachine
+public class Military : WordMachine
 {
-    /*
-     - Has a list of morse code strings to reproduce
-    - Interprets the given inputs
-    - Checks if the inputs are correct
-    - Gives feedback to the player
-     */
-
-
-
     // Temporary text display
     public TextMeshProUGUI _textDisplay;
     public TextMeshProUGUI _questionTextDisplay;
@@ -26,8 +14,8 @@ public class Telegraph : WordMachine
     // Start is called before the first frame update
     void Start()
     {
-        _doMatchToLatin = false;
-        _machineLanguage = Alphabets.MORSE;
+        _doMatchToLatin = true;
+        _machineLanguage = Alphabets.MILITARY;
         Words.Add(new Word("a"));
         Words.Add(new Word("test"));
         Words.Add(new Word("arbre"));
@@ -40,33 +28,53 @@ public class Telegraph : WordMachine
         OnIncorrectLetter += Error;
     }
 
-    // Update is called once per frame
     void Update()
     {
         InputDetection();
-        if (_textDisplay != null  )
+        if (_textDisplay != null)
         {
             _textDisplay.text = _currentText;
         }
-        if (_questionTextDisplay != null  )
+        if (_questionTextDisplay != null)
         {
-            _questionTextDisplay.text = CurrentLatinWord;
+            _questionTextDisplay.text = CurrentMachineWord;
         }
     }
 
+    protected override void InputDetection()
+    {
+        base.InputDetection();
+
+        for (KeyCode i = KeyCode.A; i <= KeyCode.Z; i++)
+        {
+            if (Input.GetKeyUp(i))
+            {
+                //print(i);
+                //print((int)i);
+                //print(Langages.intTocharacter((int)i));
+                ReadChar(Langages.intTocharacter((int)i-97));
+            }
+        }
+
+        // if enter key is pressed validate the word
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            SendWord();
+        }
+    }
 
     public void ReadChar(char c)
     {
-        if (_currentLetterIndex >= _currentMachineWord.Length)
+        if (_currentLetterIndex >= _currentLatinWord.Length)
         {
             Debug.Log("Word is complete");
             typingError();
             return;
         }
-        else if (_currentMachineWord.ElementAt(_currentLetterIndex) != c)
+        else if (_currentLatinWord.ElementAt(_currentLetterIndex) != c)
         {
             //print typed letter and expected letter
-            Debug.Log("Typed: " + c + " Expected: " + _currentMachineWord.ElementAt(_currentLetterIndex));
+            Debug.Log("Typed: " + c + " Expected: " + _currentLatinWord.ElementAt(_currentLetterIndex));
             typingError();
             return;
         }
@@ -75,17 +83,12 @@ public class Telegraph : WordMachine
         CorrectLetter();
     }
 
-
     void CorrectLetter()
     {
-        _currentText += _currentMachineWord.ElementAt(_currentLetterIndex);
+        _currentText += CurrentLatinWord.ElementAt(_currentLetterIndex);
         _currentLetterIndex++;
         // Check for spaces
-        if (_currentLetterIndex < _currentMachineWord.Length && _currentMachineWord.ElementAt(_currentLetterIndex) == ' ')
-        {
-            _currentText += " ";
-            _currentLetterIndex++;
-        }
+        
         OnCorrectLetter?.Invoke();
     }
 
@@ -95,26 +98,6 @@ public class Telegraph : WordMachine
         Debug.Log("Typing Error");
     }
 
-    protected override void InputDetection()
-    {
-        base.InputDetection();
-        if (Input.GetMouseButtonDown(0))
-        {
-            // "Dot " in morse code
-            ReadChar('•');
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            // "Dash" in morse code
-            ReadChar('-');
-        }
-
-        // if enter key is pressed validate the word
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            SendWord();
-        }
-    }
 
     public override void Error()
     {
@@ -136,6 +119,4 @@ public class Telegraph : WordMachine
     {
         _feedbackTextDisplay.text = "Incorrect!";
     }
-
-
 }
