@@ -11,6 +11,7 @@ public class Nautical : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
     public RectTransform _NauticalSpotCenterPosition;
+
     [SerializeField]
     private float _distanceBetweenSpots = 25;
 
@@ -32,7 +33,7 @@ public class Nautical : WordMachine
     {
         _doMatchToLatin = true;
         _machineLanguage = Alphabets.NAUTIC;
-        _mails.Add(CreateLetter("a"));
+        //_mails.Add(CreateLetter("a"));
         _mails.Add(CreateLetter("test"));
         _mails.Add(CreateLetter("arbre"));
         _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
@@ -62,13 +63,14 @@ public class Nautical : WordMachine
     {
         foreach (NauticalSpot nauticalSpot in _nauticalSpots)
         {
-            Destroy(nauticalSpot);
+            Destroy(nauticalSpot.gameObject);
         }
+        _nauticalSpots.Clear();
         foreach (NauticalFlag nauticalFlag in _nauticalFlags)
         {
-            Destroy(nauticalFlag);
+            Destroy(nauticalFlag.gameObject);
         }
-
+        _nauticalFlags.Clear();
 
 
         float dist = _nauticalSpotPrefab.GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
@@ -78,11 +80,30 @@ public class Nautical : WordMachine
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            Vector3 offset = new Vector3(dist, 0, 0) * i; 
-            Instantiate(_nauticalSpotPrefab, leftPos + offset ,Quaternion.identity, _NauticalSpotCenterPosition);
-            GameObject flag = Instantiate(_nauticalFlagPrefab, leftPos + offset, Quaternion.identity, _NauticalSpotCenterPosition);
-            flag.GetComponent<NauticalFlag>()._flagId = Langages.characterToInt(_currentLatinWord[i]);
-            flag.GetComponent<Image>().sprite = _nauticalAlphabet[i];
+            Vector3 offset = new Vector3(dist, 0, 0) * i;
+            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, leftPos + offset, Quaternion.identity, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            spot._distanceBetweenSpots = _distanceBetweenSpots;
+
+            _nauticalSpots.Add(spot);
+        }
+
+        for (int i = 0; i < _currentLatinWord.Length; i++)
+        {
+            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _nauticalSpots[i].transform.position, Quaternion.identity, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
+            flag._flagId = Langages.characterToInt(_currentLatinWord[i]);
+            flag.GetComponent<Image>().sprite = _nauticalAlphabet[flag._flagId];
+
+            _nauticalFlags.Add(flag);
+        }
+
+        _nauticalFlags.Shuffle();
+
+        for (int i = 0; i < _currentLatinWord.Length; i++)
+        {
+            _nauticalFlags[i].transform.SetParent(_nauticalSpots[i].transform, true);
+            _nauticalFlags[i].transform.position = _nauticalSpots[i].transform.position;
+            _nauticalFlags[i]._attachedSpot = _nauticalSpots[i];
+            _nauticalFlags[i]._attachedSpot._attachedFlag = _nauticalFlags[i];
         }
     }
 
