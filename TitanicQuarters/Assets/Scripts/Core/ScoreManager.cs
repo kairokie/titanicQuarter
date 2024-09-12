@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-
+    /*
     [SerializeField]
     public List<int> _scorePerWordSize;
-
+    */
     [SerializeField]
     private int _score = 0;
 
     [SerializeField]
     private TextMeshProUGUI _scoreDisplay;
 
+    public void IncrementScore()
+    {
+        _score++;
+        _scoreDisplay.text = "Score : " + _score.ToString();
+    }
+
+    /*
     public void IncrementScoreWithWordSize(int size)
     {
         if (size <= 1) return;
@@ -30,4 +37,5 @@ public class ScoreManager : MonoBehaviour
 
         _scoreDisplay.text = "Score : " + _score.ToString();
     }
+    */
 }
