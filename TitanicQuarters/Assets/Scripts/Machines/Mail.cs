@@ -90,7 +90,7 @@ public class Mail : Machine
         {
             MoveMail();
         }
-        if (Input.GetMouseButtonDown(0))
+        if (_isActivated && Input.GetMouseButtonDown(0))
         {
             MouseRaycast();
         }
