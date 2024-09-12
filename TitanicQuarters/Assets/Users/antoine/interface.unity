@@ -614,7 +614,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -1009,7 +1009,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1062,7 +1062,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1115,9 +1115,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotation:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: 6.283185
+      minScalar: 0.017453292
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5562,6 +5562,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36a64d83b98e148449f6f0e081b3ae54, type: 3}
+--- !u!1001 &4496113931229535092
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3470808240996955431, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_Name
+      value: e_enveloppe_nautique_fermee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.04747065
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.05701778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278728713370038173, guid: ae12e8f513174814c89584ae4566489d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae12e8f513174814c89584ae4566489d, type: 3}
 --- !u!1001 &5720435220660074715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5702,3 +5759,4 @@ SceneRoots:
   - {fileID: 2052796449695094695}
   - {fileID: 3937416216499392827}
   - {fileID: 2041190576}
+  - {fileID: 4496113931229535092}
