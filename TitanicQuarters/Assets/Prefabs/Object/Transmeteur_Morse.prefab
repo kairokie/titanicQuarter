@@ -151,6 +151,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 74502fe8f233fa44aac2e4aa6cb7a735, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f27f52087d67b24abd41f2054c88a5b, type: 2}
     - target: {fileID: 919132149155446097, guid: 74502fe8f233fa44aac2e4aa6cb7a735, type: 3}
       propertyPath: m_Name
       value: c_marconi-base_morse_OK
@@ -229,6 +233,22 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c4ed94e46ef4c4f47abc91b19d6b3516, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d6cd6f34d38f5947906aea8f98c5763, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c4ed94e46ef4c4f47abc91b19d6b3516, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d6cd6f34d38f5947906aea8f98c5763, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c4ed94e46ef4c4f47abc91b19d6b3516, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d6cd6f34d38f5947906aea8f98c5763, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c4ed94e46ef4c4f47abc91b19d6b3516, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d6cd6f34d38f5947906aea8f98c5763, type: 2}
     - target: {fileID: 919132149155446097, guid: c4ed94e46ef4c4f47abc91b19d6b3516, type: 3}
       propertyPath: m_Name
       value: c_marconi-bras_morse
