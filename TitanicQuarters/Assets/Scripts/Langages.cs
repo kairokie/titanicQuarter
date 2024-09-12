@@ -13,19 +13,34 @@ public enum Alphabets
     NAUTIC,
     MILITARY,
 }
+
+public enum WordSignificance
+{
+    SIGNIFICANCE_0,
+    SIGNIFICANCE_1,
+}
 public class Word
 {
     string _latinWord { get; }
     string _morseWord { get; }
     string _militaryWord { get; }
 
-    public Word(string word)
+    List<int> _nauticWord;
+
+    WordSignificance _significance = WordSignificance.SIGNIFICANCE_0;
+    WordSignificance Significance { get => _significance; set => _significance = value; }
+    
+
+    public Word(string word,WordSignificance significance = WordSignificance.SIGNIFICANCE_0)
     {
         _latinWord = word;
         _morseWord = Langages.stringToMorse(word);
         _militaryWord = Langages.stringToMilitary(word);
-        //TODO : Add NAUTIC
+        _nauticWord = Langages.stringToNauticWord(word);
     }
+
+
+
 
     public string GetWord(Alphabets _alphabets)
     {
@@ -154,4 +169,14 @@ static class Langages
         {"Yankee"},
         {"Zulu"}
      };
+
+    public static List<int> stringToNauticWord(string s)
+    {
+        List<int> _nauticWord = new List<int>();
+        for (int i = 0; i < s.Length; i++)
+        {
+            _nauticWord.Add(Langages.characterToInt(s[i]));
+        }
+        return _nauticWord;
+    }
 }

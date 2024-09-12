@@ -40,6 +40,17 @@ public class GameManager : MonoBehaviour
 
     public Machine _currentMachine;
 
+    static bool _paused = false;
+
+    public static bool isPaused { get => _paused; }
+
+    [SerializeField]
+    FMODUnity.StudioEventEmitter _musicSound;
+
+    // DEBUG regular mail spawn
+    public int _mailSpawned = 0;
+
+
 
 
 
@@ -49,7 +60,7 @@ public class GameManager : MonoBehaviour
         _scoreManager = GetComponent<ScoreManager>();
 
         _cameraManager = FindObjectOfType<CameraManager>();
-  
+
         if (_telegraph)
         {
             //_telegraph.OnCorrectWord += _scoreManager.IncrementScore;
@@ -58,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
-        //_nautical.gameObject.SetActive(false);
+        _nautical.gameObject.SetActive(false);
 
         if (_currentMachine)
         {
@@ -73,7 +84,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputDetection();   
+        InputDetection();
     }
 
     public void ChangeGameMode(Machine nextMachine)
@@ -109,22 +120,31 @@ public class GameManager : MonoBehaviour
 
     private void InputDetection()
     {
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (!_paused && !_mail._pickedLetter)
         {
-            ChangeGameMode(_telegraph);
+            if (Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                ChangeGameMode(_telegraph);
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                ChangeGameMode(_military);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                ChangeGameMode(_nautical);
+            }
+            if (Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                ChangeGameMode(_mail);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            ChangeGameMode(_military);
+            GamePauseManager();
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            //ChangeGameMode(_nautical);
-        }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            ChangeGameMode(_mail);
-        }
+
     }
 
     private CameraMode MachineToCameraMode()
@@ -138,14 +158,51 @@ public class GameManager : MonoBehaviour
             case Nautical nautical:
                 return CameraMode.NAUTIQUE;
             case Mail mail:
-                return CameraMode.MENU;
-            default:
                 return CameraMode.GLOBAL;
+            default:
+                return CameraMode.MENU;
         }
     }
 
 
-    
+    void GamePauseManager()
+    {
+        if (_paused)
+        {
+            UnPause();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    void Pause()
+    {
+        _paused = true;
+        Time.timeScale = 0;
+        if(_musicSound)
+        {
+            _musicSound.SetParameter("MENU SWITCH",1.0f);
+        }
+        else
+        {
+            Debug.Log("No music sound");
+        }
+    }
+
+    void UnPause()
+    {
+        _paused = false;
+        Time.timeScale = 1;
+        if (_musicSound)
+        {
+            _musicSound.SetParameter("MENU SWITCH", 0.0f);
+        }
+    }
+
+
+
 
 
 
