@@ -132,7 +132,7 @@ public class WordMachine : Machine
     void CorrectWord()
     {
         _frustrationManager?.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
-        _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
+        _scoreManager?.IncrementScore();
 
         //RemoveMail();
         EmptyMail();
