@@ -17,9 +17,6 @@ public class Military : WordMachine
     [SerializeField]
     private float _errorDelayMax = 0.5f;
 
-    public string s;
-    public string s2;
-
 
     override protected void Awake()
     {
