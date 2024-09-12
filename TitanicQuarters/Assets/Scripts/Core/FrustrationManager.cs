@@ -43,7 +43,10 @@ public class FrustrationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IncrementFrustration();
+        if (!GameManager.isPaused)
+        {
+            IncrementFrustration();
+        }
     }
 
     public void IncrementFrustration()

@@ -41,23 +41,28 @@ public class MailLetter : MonoBehaviour
     {
         int machineIndex = 0;
         machineIndex = Random.Range(0, 3);
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            machineIndex = gameManager._mailSpawned++ % 3;
+        }
         if (machineIndex == 0)
         {
             _machine = FindObjectOfType<Telegraph>(true);
-            _machineName = "Telegraph";
+            _machineName = "T";
         }
         else if (machineIndex == 1)
         {
             _machine = FindObjectOfType<Military>(true);
-            _machineName = "Military";
+            _machineName = "M";
         }
         else if (machineIndex == 2)
         {
             _machine = FindObjectOfType<Nautical>(true);
-            _machineName = "Nautical";
+            _machineName = "N";
         }
-        _machine = FindObjectOfType<Nautical>(true);
-        _machineName = "Nautical";
+        
     }
 
     public void PickLetter()
@@ -67,6 +72,16 @@ public class MailLetter : MonoBehaviour
         {
             colliders[i].enabled = false;
         }
+
+        Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = true;
+        }
+        else
+        {
+            Debug.Log("No RB");
+        }
     }
 
     public void DropLetter()
@@ -75,6 +90,11 @@ public class MailLetter : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].enabled = true;
+        }
+        Rigidbody rigidbody = gameObject.GetComponent<Rigidbody>();
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = false;
         }
     }
 

@@ -21,6 +21,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject camMorse;
     [SerializeField] private GameObject camMilitaire;
     [SerializeField] private GameObject camNautique;
+    [SerializeField] private GameObject _mainCamera;
+    private CameraMode camMode = CameraMode.MENU;
+
     private Dictionary<CameraMode, GameObject> camList;
 
     [SerializeField] private CinemachineImpulseSource _impulseSource;
@@ -67,11 +70,24 @@ public class CameraManager : MonoBehaviour
         {
             Debug.LogError("Camera list is null");  
         }
+
+        if(camMode == nextMode)
+        {
+            return;
+        }
+
+
+        
         foreach (var cam in camList.Values)
         {
             cam.SetActive(false); //switch off the other cams
         }
-
+        var emitter = _mainCamera.GetComponent<FMODUnity.StudioEventEmitter>();
+        if (emitter != null)
+        {
+            emitter.Play(); 
+        }
+        camMode = nextMode;
         camList[nextMode].SetActive(true); //Activate right cam
     }
 }
