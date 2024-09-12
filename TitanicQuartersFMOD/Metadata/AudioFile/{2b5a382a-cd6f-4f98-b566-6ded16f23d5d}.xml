@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2b5a382a-cd6f-4f98-b566-6ded16f23d5d}">
+		<property name="assetPath">
+			<value>SoundDesign/Drapeaux/drop_flag.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.28075</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{585f36c7-8dfa-4066-9671-d2bfdb2d9579}</destination>
+		</relationship>
+	</object>
+</objects>

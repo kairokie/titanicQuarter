@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{77ee8f2f-bc94-4ef3-a83e-87d48347a031}">
+		<property name="assetPath">
+			<value>SoundDesign/Militaire/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{585f36c7-8dfa-4066-9671-d2bfdb2d9579}</destination>
+		</relationship>
+	</object>
+</objects>

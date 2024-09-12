@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{96535f06-8b22-46b7-917a-ce19b34afe4d}">
+		<property name="assetPath">
+			<value>SoundDesign/UI/switch1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.031875000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{585f36c7-8dfa-4066-9671-d2bfdb2d9579}</destination>
+		</relationship>
+	</object>
+</objects>

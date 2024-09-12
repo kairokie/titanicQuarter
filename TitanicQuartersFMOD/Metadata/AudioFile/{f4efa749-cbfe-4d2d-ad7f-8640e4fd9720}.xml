@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f4efa749-cbfe-4d2d-ad7f-8640e4fd9720}">
+		<property name="assetPath">
+			<value>SoundDesign/Militaire/Touches Machine/type_writer1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.15704166666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{585f36c7-8dfa-4066-9671-d2bfdb2d9579}</destination>
+		</relationship>
+	</object>
+</objects>
