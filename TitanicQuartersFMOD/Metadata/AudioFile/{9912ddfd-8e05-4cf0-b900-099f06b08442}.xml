@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{9912ddfd-8e05-4cf0-b900-099f06b08442}">
 		<property name="assetPath">
-			<value>SoundDesign/erreur.wav</value>
+			<value>SoundDesign/Other/erreur.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
