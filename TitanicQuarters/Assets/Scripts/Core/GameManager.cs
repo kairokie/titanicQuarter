@@ -107,11 +107,17 @@ public class GameManager : MonoBehaviour
                 _currentMachine.gameObject.SetActive(false);
             }
         }
-        // TODO : add the camera switch
         _currentMachine = nextMachine;
         if (_cameraManager)
         {
             _cameraManager.SwitchCam(MachineToCameraMode());
+        }
+
+
+        if (_currentMachine is Mail)
+        {
+            Mail mail = _currentMachine as Mail;
+            mail.IsActivated = true;
         }
         _currentMachine.gameObject.SetActive(true);
     }

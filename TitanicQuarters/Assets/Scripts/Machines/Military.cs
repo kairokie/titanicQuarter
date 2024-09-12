@@ -11,6 +11,9 @@ public class Military : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
 
+    [SerializeField]
+    List<Animator> _animators = new List<Animator>();
+
     //Errors
     private float _errorDelay;
 
@@ -63,9 +66,7 @@ public class Military : WordMachine
         {
             if (Input.GetKeyUp(i))
             {
-                //print(i);
-                //print((int)i);
-                //print(Langages.intTocharacter((int)i));
+                _animators[(int)i - 97].Play("Touche");
                 ReadChar(Langages.intTocharacter((int)i-97));
             }
         }
@@ -73,6 +74,7 @@ public class Military : WordMachine
         // if enter key is pressed validate the word
         if (Input.GetKeyUp(KeyCode.Return))
         {
+            _animators[_animators.Count-1].Play("Touche");
             SendWord();
         }
     }

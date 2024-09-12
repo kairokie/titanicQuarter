@@ -46,38 +46,11 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/UIBank.bank
   Name: UIBank
   StudioPath: bank:/UIBank
-  lastModified: 638617509207994812
+  lastModified: 638617570179956214
   FileSizes:
   - Name: Desktop
     Value: 25888
   Exists: 1
---- !u!114 &-8603982618298461465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Design/Erreur
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Design/Erreur
-  Guid:
-    Data1: 1742721203
-    Data2: 1177056028
-    Data3: 1508608438
-    Data4: 836567655
-  Banks:
-  - {fileID: -4507783560010968277}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 446
 --- !u!114 &-8129503189310995668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +99,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7505567998833576142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Erreur
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Erreur
+  Guid:
+    Data1: 1742721203
+    Data2: 1177056028
+    Data3: 1508608438
+    Data4: 836567655
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 446
 --- !u!114 &-4507783560010968277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,38 +141,11 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/SFXBank.bank
   Name: SFXBank
   StudioPath: bank:/SFXBank
-  lastModified: 638617509207897299
+  lastModified: 638617570179946217
   FileSizes:
   - Name: Desktop
     Value: 31072
   Exists: 1
---- !u!114 &-4362399260181089500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Design/MiniJeuMorse/Validation
-  m_EditorClassIdentifier: 
-  Path: event:/Sound Design/MiniJeuMorse/Validation
-  Guid:
-    Data1: -1658911548
-    Data2: 1112278862
-    Data3: -785403244
-    Data4: 1428861483
-  Banks:
-  - {fileID: -4507783560010968277}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 186
 --- !u!114 &-3351102849984592327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +161,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638617509206853326
+  lastModified: 638617570179590927
   FileSizes:
   - Name: Desktop
     Value: 1376
@@ -241,6 +214,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-1445691394275289711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuMorse/Validation
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuMorse/Validation
+  Guid:
+    Data1: -1658911548
+    Data2: 1112278862
+    Data3: -785403244
+    Data4: 1428861483
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 186
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
   - {fileID: -8811995004754915304}
   - {fileID: 5123697259265919275}
   - {fileID: 7283235553213546881}
-  - {fileID: -8603982618298461465}
-  - {fileID: -4362399260181089500}
+  - {fileID: -7505567998833576142}
+  - {fileID: -1445691394275289711}
   EditorParameters:
   - {fileID: 6443352303395120388}
   - {fileID: -1685016447968696835}
@@ -272,7 +272,7 @@ MonoBehaviour:
   - {fileID: -3351102849984592327}
   StringsBanks:
   - {fileID: 3632451359125061626}
-  cacheTime: 638617509207994812
+  cacheTime: 638617570179956214
   cacheVersion: 131619
 --- !u!114 &357034120706392300
 MonoBehaviour:
@@ -289,7 +289,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/MusBank.bank
   Name: MusBank
   StudioPath: bank:/MusBank
-  lastModified: 638617509207750157
+  lastModified: 638617570179936214
   FileSizes:
   - Name: Desktop
     Value: 5687104
@@ -309,7 +309,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638617509206969401
+  lastModified: 638617570179600930
   FileSizes:
   - Name: Desktop
     Value: 1294

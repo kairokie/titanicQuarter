@@ -23,6 +23,9 @@ public class Telegraph : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
 
+    [SerializeField]
+    private Animator _animator;
+
     private float _errorDelay;
 
     [SerializeField]
@@ -158,11 +161,13 @@ public class Telegraph : WordMachine
         {
             // "Dot " in morse code
             ReadChar('•');
+            _animator.Play("Tic");
         }
         if (Input.GetMouseButtonDown(1))
         {
             // "Dash" in morse code
             ReadChar('-');
+            _animator.Play("Tic");
         }
 
         // if enter key is pressed validate the word
