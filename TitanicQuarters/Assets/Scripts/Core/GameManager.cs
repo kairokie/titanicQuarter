@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
     // DEBUG regular mail spawn
     public int _mailSpawned = 0;
 
+    //Pause menu
+    [SerializeField]
+    private GameObject menuManager;
+
 
 
 
@@ -169,11 +173,28 @@ public class GameManager : MonoBehaviour
     {
         if (_paused)
         {
-            UnPause();
+            UnPause(); //Remove UI
+            if (menuManager != null)
+            {
+                menuManager.GetComponent<menuManager>().Unpause();
+            }
+            else
+            {
+                print("Pause menu UI not found");
+            }
+            
         }
         else
         {
             Pause();
+            if (menuManager != null) //Apply UI
+            {
+                menuManager.GetComponent<menuManager>().Pause();
+            }
+            else
+            {
+                print("Pause menu UI not found");
+            }
         }
     }
 
