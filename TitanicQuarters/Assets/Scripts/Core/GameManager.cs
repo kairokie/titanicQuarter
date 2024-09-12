@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
                 _currentMachine.gameObject.SetActive(false);
             }
         }
-        // TODO : add the camera switch
         _currentMachine = nextMachine;
         if (_cameraManager)
         {

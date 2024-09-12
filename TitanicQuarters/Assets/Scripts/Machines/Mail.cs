@@ -59,6 +59,11 @@ public class Mail : Machine
 
 
 
+    protected void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +86,6 @@ public class Mail : Machine
     protected override void InputDetection()
     {
         base.InputDetection();
-        if(!_isActivated) return;
         if (_pickedLetter)
         {
             MoveMail();
