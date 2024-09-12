@@ -52,12 +52,16 @@ public class Telegraph : WordMachine
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
-        if (_errorDelay > 0)
+        if (!GameManager.isPaused)
         {
-            _errorDelay -= Time.deltaTime;
+            InputDetection();
+            if (_errorDelay > 0)
+            {
+                _errorDelay -= Time.deltaTime;
+            }
         }
-        
+
+
     }
 
     override protected void UpdateDisplay()
@@ -93,7 +97,7 @@ public class Telegraph : WordMachine
         //Correct input
         CorrectLetter();
         UpdateDisplay();
-            
+
     }
 
     protected override void ClearDisplay()

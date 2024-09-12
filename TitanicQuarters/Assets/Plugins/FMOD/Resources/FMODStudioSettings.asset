@@ -526,8 +526,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: D:/TitanicQuartersFMOD/TitanicQuartersFMOD.fspro
-  sourceBankPath: D:/TitanicQuartersFMOD/Build
+  sourceProjectPath: ../TitanicQuartersFMOD/TitanicQuartersFMOD.fspro
+  sourceBankPath: ../TitanicQuartersFMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

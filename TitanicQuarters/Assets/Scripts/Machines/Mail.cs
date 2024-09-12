@@ -64,7 +64,10 @@ public class Mail : Machine
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
+        if (!GameManager.isPaused)
+        {
+            InputDetection();
+        }
     }
 
     
