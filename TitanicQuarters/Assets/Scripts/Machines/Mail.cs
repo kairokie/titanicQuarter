@@ -136,37 +136,9 @@ public class Mail : Machine
         }
     }
 
-    IEnumerator LetterArrivalCoroutine2(float timeBetween)
-
-
-    {
-        while (_isRunning)
-        {
-            if (_letterPrefab1)
-            {
-                GameObject letter = Instantiate(_letterPrefab1);
-                MailLetter mailLetter = letter.GetComponent<MailLetter>();
-                if (mailLetter)
-                {
-                    mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
-                }
-                //mailLetter.transform.position = transform.position + _mailOffset * _numberOfMails;
-                //mailLetter.transform.rotation = Quaternion.Euler(-45f, -90, 0);
-                //_numberOfMails++;
-            }
-            else
-            {
-                Debug.Log("NO LETTER PREFABS");
-            }
-            yield return new WaitForSeconds(timeBetween);
-        }
-
-    }
 
     IEnumerator LetterArrivalCoroutine(float timeBetween)
     {
-        //if (!_isActivated) ;
-        Debug.Log("LetterArrivalCoroutine started");
         while (_isRunning)
         {
             SpawnMail();
@@ -206,7 +178,7 @@ public class Mail : Machine
 
     public void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.white;
         Gizmos.DrawWireCube(_spawnCentre.position, new Vector3(_spawnAreaLength * 2, _spawnHeight, _spawnAreaWidth * 2));
     }
     private void MoveMail()

@@ -24,7 +24,11 @@ public class menuManager : MonoBehaviour
 
     public void StartGame()
     {
-        cameraManager.GetComponent<CameraManager>().SwitchCam(CameraMode.GLOBAL);
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager)
+        {
+            gameManager.StartGame();
+        }
         menuUI.SetActive(false);
 
     }
