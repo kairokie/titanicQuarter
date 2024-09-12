@@ -38,6 +38,12 @@ public class Mail : Machine
     // Letter picked
     public MailLetter _pickedLetter = null;
 
+    // Mail Spawn transform
+    [SerializeField] Transform _spawnCentre;
+    [SerializeField] float _spawnAreaLength = 0f;
+    [SerializeField] float _spawnAreaWidth = 0f;
+    [SerializeField] float _spawnHeight = 2.0f;
+
     // Coroutines
     Coroutine _mailArrivalCoroutine = null;
     Coroutine _mailMovementCoroutine = null;
@@ -163,27 +169,46 @@ public class Mail : Machine
         Debug.Log("LetterArrivalCoroutine started");
         while (_isRunning)
         {
-            if (_letterPrefab1)
-            {
-                GameObject letter = Instantiate(_letterPrefab1);
-                MailLetter mailLetter = letter.GetComponent<MailLetter>();
-                if (mailLetter)
-                {
-                    mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
-                }
-                mailLetter.transform.position = transform.position + _mailOffset * _numberOfMails;
-                mailLetter.transform.rotation = Quaternion.Euler(-45f, -90, 0);
-                _numberOfMails++;
-            }
-            else
-            {
-                Debug.Log("NO LETTER PREFABS");
-            }
+            SpawnMail();
             yield return new WaitForSeconds(timeBetween);
         }
-
     }
 
+    void SpawnMail()
+    {
+        if (_letterPrefab1)
+        {
+            GameObject letter = Instantiate(_letterPrefab1);
+            MailLetter mailLetter = letter.GetComponent<MailLetter>();
+            if (mailLetter)
+            {
+                mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
+            }
+            float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
+            float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
+            float xPos = xOffset + _spawnCentre.position.x;
+            float zPos = zOffset + _spawnCentre.position.z;
+            float yPos = _spawnHeight;
+
+            float xRot = UnityEngine.Random.Range(-60.0f, 60.0f);
+            float zRot = UnityEngine.Random.Range(-60.0f, 60.0f);
+
+            mailLetter.transform.position = new Vector3(xPos, yPos, zPos);
+            mailLetter.transform.rotation = Quaternion.Euler(xRot, -90, zRot);
+            _numberOfMails++;
+        }
+        else
+        {
+            Debug.Log("NO LETTER PREFABS");
+        }
+    }
+
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireCube(_spawnCentre.position, new Vector3(_spawnAreaLength * 2, _spawnHeight, _spawnAreaWidth * 2));
+    }
     private void MoveMail()
     {
         Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;

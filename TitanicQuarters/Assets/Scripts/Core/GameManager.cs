@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 
     public static bool isPaused { get => _paused; }
 
+    [SerializeField]
+    FMODUnity.StudioEventEmitter _musicSound;
+
     // DEBUG regular mail spawn
     public int _mailSpawned = 0;
 
@@ -117,7 +120,7 @@ public class GameManager : MonoBehaviour
 
     private void InputDetection()
     {
-        if (!_paused)
+        if (!_paused && !_mail._pickedLetter)
         {
             if (Input.GetKeyUp(KeyCode.UpArrow))
             {
@@ -178,12 +181,24 @@ public class GameManager : MonoBehaviour
     {
         _paused = true;
         Time.timeScale = 0;
+        if(_musicSound)
+        {
+            _musicSound.SetParameter("MENU SWITCH",1.0f);
+        }
+        else
+        {
+            Debug.Log("No music sound");
+        }
     }
 
     void UnPause()
     {
         _paused = false;
         Time.timeScale = 1;
+        if (_musicSound)
+        {
+            _musicSound.SetParameter("MENU SWITCH", 0.0f);
+        }
     }
 
 

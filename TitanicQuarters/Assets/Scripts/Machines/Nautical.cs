@@ -26,8 +26,8 @@ public class Nautical : WordMachine
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
 
-    
-    
+
+
     private bool _holdingFlag = false;
 
     override protected void Awake()
@@ -45,7 +45,7 @@ public class Nautical : WordMachine
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         //ResetNauticalSpots();
     }
@@ -53,7 +53,10 @@ public class Nautical : WordMachine
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
+        if (!GameManager.isPaused)
+        {
+            InputDetection();
+        }
     }
 
     void ResetNauticalSpots()
@@ -72,14 +75,14 @@ public class Nautical : WordMachine
 
         float dist = _nauticalSpotPrefab.GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
         dist *= _NauticalSpotCenterPosition.lossyScale.x;
-        Vector3 halfSizeX = _NauticalSpotCenterPosition.right * dist/2  * Mathf.Max(_currentLatinWord.Length - 1, 0);
+        Vector3 halfSizeX = _NauticalSpotCenterPosition.right * dist / 2 * Mathf.Max(_currentLatinWord.Length - 1, 0);
         Vector3 leftPos = _NauticalSpotCenterPosition.position - halfSizeX;
-        
+
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
             Vector3 offset = _NauticalSpotCenterPosition.right * dist * i;
-            NauticalSpot spot = Instantiate(_nauticalSpotPrefab,  (leftPos + offset) , _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, (leftPos + offset), _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
             spot._distanceBetweenSpots = _distanceBetweenSpots;
 
             _nauticalSpots.Add(spot);

@@ -60,8 +60,6 @@ public class Telegraph : WordMachine
                 _errorDelay -= Time.deltaTime;
             }
         }
-
-
     }
 
     override protected void UpdateDisplay()
