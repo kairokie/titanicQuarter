@@ -132,3 +132,4 @@ Assets/Plugins/Android/FirebaseApp.androidlib/res/values.meta
 Assets/Plugins/Android/FirebaseApp.androidlib/res/values/google-services.xml.meta
 *.keystore
 *.unitypackage.meta
+!Build
