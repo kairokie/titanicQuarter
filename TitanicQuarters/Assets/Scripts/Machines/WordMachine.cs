@@ -36,7 +36,6 @@ public class WordMachine : Machine
 
     // Reading indexes 
 
-    protected int _currentTestText = 0;
     protected int _currentLetterIndex = 0;
     protected bool _isEmpty = true;
 
@@ -55,8 +54,9 @@ public class WordMachine : Machine
     float _wordCount = 0;
 
 
-    public void Awake()
+    protected virtual void Awake()
     {
+        ClearDisplay();
         gameObject.SetActive(false);
     }
     public void SendWord()
@@ -78,15 +78,32 @@ public class WordMachine : Machine
     {
         _frustrationManager?.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
         _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
-        
-        _currentTestText++;
-        _currentTestText %= _mails.Count;
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
 
         RemoveMail();
+        _currentLatinWord = "";
+        _currentMachineWord = "";
+        _currentText = "";
+        _currentLetterIndex = 0;
+        ClearDisplay();
+
+        if (_mails.Count > 0)
+        {
+            _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
+            _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
+            UpdateDisplay();
+        }
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
+    }
+
+    protected virtual void UpdateDisplay()
+    {
+
+    }
+
+    protected virtual void ClearDisplay()
+    {
+
     }
 
     void RemoveMail()
@@ -114,6 +131,12 @@ public class WordMachine : Machine
     public void AddMail(MailLetter mail)
     {
         _mails.Add(mail);
+        if (_mails.Count == 1)
+        {
+            _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
+            _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
+            UpdateDisplay();
+        }
         _wordCount = _mails.Count;
         _isEmpty = false;
     }
@@ -138,24 +161,24 @@ public class WordMachine : Machine
         mail.Word = new Word(word);
         return mail;
     }
-  
+
 
     public virtual void Error()
     {
-        
+
     }
 
     public virtual void Correct()
     {
-        
+
     }
 
     public virtual void CorrectWordDisplay()
     {
-        
+
     }
     public virtual void ErrorWordDisplay()
     {
-        
+
     }
 }

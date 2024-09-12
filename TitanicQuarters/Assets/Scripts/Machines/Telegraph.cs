@@ -28,19 +28,25 @@ public class Telegraph : WordMachine
     [SerializeField]
     private float _errorDelayMax = 0.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
         _doMatchToLatin = false;
         _machineLanguage = Alphabets.MORSE;
-        _mails.Add(CreateLetter("sst"));
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
+        //AddMail(CreateLetter("sst"));
+
 
         OnCorrectWord += CorrectWordDisplay;
         OnCorrectLetter += Correct;
         OnIncorrectWord += ErrorWordDisplay;
         OnIncorrectLetter += Error;
+
+        base.Awake();
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -51,6 +57,12 @@ public class Telegraph : WordMachine
         {
             _errorDelay -= Time.deltaTime;
         }
+        
+    }
+
+    override protected void UpdateDisplay()
+    {
+        base.UpdateDisplay();
         if (_textDisplay != null)
         {
             _textDisplay.text = _currentText;
@@ -80,6 +92,20 @@ public class Telegraph : WordMachine
 
         //Correct input
         CorrectLetter();
+        UpdateDisplay();
+            
+    }
+
+    protected override void ClearDisplay()
+    {
+        if (_textDisplay != null)
+        {
+            _textDisplay.text = "";
+        }
+        if (_questionTextDisplay != null)
+        {
+            _questionTextDisplay.text = "";
+        }
     }
 
 
@@ -109,6 +135,8 @@ public class Telegraph : WordMachine
             _currentLetterIndex--;
         }
         _currentText = _currentText.Substring(0, _currentLetterIndex);
+        UpdateDisplay();
+
         Debug.Log("Typing Error " + _currentLetterIndex + " new substring " + _currentText);
     }
 
@@ -120,7 +148,7 @@ public class Telegraph : WordMachine
     protected override void InputDetection()
     {
         base.InputDetection();
-        if (_errorDelay > 0 || _isEmpty)
+        if (_errorDelay > 0 || _mails.Count == 0)
         {
             return;
         }

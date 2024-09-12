@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     public Machine _currentMachine;
 
+    // DEBUG regular mail spawn
+    public int _mailSpawned = 0;
+
 
 
 
@@ -119,7 +122,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            //ChangeGameMode(_nautical);
+            ChangeGameMode(_nautical);
         }
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {

@@ -41,6 +41,12 @@ public class MailLetter : MonoBehaviour
     {
         int machineIndex = 0;
         machineIndex = Random.Range(0, 3);
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            machineIndex = gameManager._mailSpawned++ % 3;
+        }
         if (machineIndex == 0)
         {
             _machine = FindObjectOfType<Telegraph>(true);
@@ -56,8 +62,7 @@ public class MailLetter : MonoBehaviour
             _machine = FindObjectOfType<Nautical>(true);
             _machineName = "Nautical";
         }
-        _machine = FindObjectOfType<Nautical>(true);
-        _machineName = "Nautical";
+        
     }
 
     public void PickLetter()
