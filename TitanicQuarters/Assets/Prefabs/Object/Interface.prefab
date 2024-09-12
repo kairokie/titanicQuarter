@@ -754,12 +754,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2131780989465645798}
   m_Layer: 5
-  m_Name: Losse screan
+  m_Name: Lose screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2131780989465645798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -796,7 +796,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5680739799337248440}
   - component: {fileID: 1934104039424779654}
-  - component: {fileID: 1905753107583280074}
   - component: {fileID: 1145386654842571959}
   m_Layer: 0
   m_Name: Cam ui
@@ -859,7 +858,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -871,14 +870,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1905753107583280074
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4299016664213616941}
-  m_Enabled: 1
 --- !u!114 &1145386654842571959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1033,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8369043060095468122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2768446889870032394}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: QuitApplication
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5064779551361096235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1402536255760584173}
+  - component: {fileID: 2768446889870032394}
   m_Layer: 0
   m_Name: Interface
   m_TagString: Untagged
@@ -1076,6 +1080,22 @@ Transform:
   - {fileID: 5680739799337248440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2768446889870032394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5064779551361096235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7222977a3b02c0468dd1785ed3dc633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraManager: {fileID: 0}
+  menuUI: {fileID: 9027171328392270114}
+  creditsUI: {fileID: 0}
+  pauseUI: {fileID: 3750902205400455143}
 --- !u!1 &5686969183972042013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1603,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 390964035496386499}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2768446889870032394}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6978655889211222475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,7 +2139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7462013279629268562
 RectTransform:
   m_ObjectHideFlags: 0
