@@ -23,6 +23,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject camNautique;
     private Dictionary<CameraMode, GameObject> camList;
 
+    [SerializeField] private CinemachineImpulseSource _impulseSource;
+
 
     private void Awake()
     {
@@ -41,7 +43,12 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Global cam 
+        
+    }
+
+    public void ScreenShake()
+    {
+        _impulseSource.GenerateImpulse();
     }
 
     //public void SwitchCam(string camName)
