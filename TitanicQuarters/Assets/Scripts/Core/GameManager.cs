@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -74,15 +75,16 @@ public class GameManager : MonoBehaviour
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
         _nautical.gameObject.SetActive(false);
+        _mail.gameObject.SetActive(false);
 
-        if (_currentMachine)
-        {
-            ChangeGameMode(_currentMachine);
-        }
-        else
-        {
-            ChangeGameMode(_mail);
-        }
+        //if (_currentMachine)
+        //{
+        //    ChangeGameMode(_currentMachine);
+        //}
+        //else
+        //{
+        //    ChangeGameMode(_mail);
+        //}
     }
 
     // Update is called once per frame
@@ -111,15 +113,7 @@ public class GameManager : MonoBehaviour
         {
             _cameraManager.SwitchCam(MachineToCameraMode());
         }
-        if (_currentMachine is Mail)
-        {
-            Mail mail = _currentMachine as Mail;
-            mail.IsActivated = true;
-        }
-        else
-        {
-            _currentMachine.gameObject.SetActive(true);
-        }
+        _currentMachine.gameObject.SetActive(true);
     }
 
     private void InputDetection()
@@ -182,7 +176,7 @@ public class GameManager : MonoBehaviour
             {
                 print("Pause menu UI not found");
             }
-            
+
         }
         else
         {
@@ -202,9 +196,9 @@ public class GameManager : MonoBehaviour
     {
         _paused = true;
         Time.timeScale = 0;
-        if(_musicSound)
+        if (_musicSound)
         {
-            _musicSound.SetParameter("MENU SWITCH",1.0f);
+            _musicSound.SetParameter("MENU SWITCH", 1.0f);
         }
         else
         {
@@ -222,9 +216,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-
-
-
-
+    public void StartGame()
+    {
+        ChangeGameMode(_mail);
+    }
 }

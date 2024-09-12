@@ -72,28 +72,21 @@ public class Nautical : WordMachine
         }
         _nauticalFlags.Clear();
 
-
-        float dist = _nauticalSpotPrefab.GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
-        dist *= _NauticalSpotCenterPosition.lossyScale.x;
-        Vector3 halfSizeX = _NauticalSpotCenterPosition.right * dist / 2 * Mathf.Max(_currentLatinWord.Length - 1, 0);
-        Vector3 leftPos = _NauticalSpotCenterPosition.position - halfSizeX;
-
-
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            Vector3 offset = _NauticalSpotCenterPosition.right * dist * i;
-            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, (leftPos + offset), _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+
             spot._distanceBetweenSpots = _distanceBetweenSpots;
+            spot._previewLetter.text = _currentLatinWord[i].ToString();
 
             _nauticalSpots.Add(spot);
         }
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _nauticalSpots[i].transform.position, _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
+            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
             flag._flagId = Langages.characterToInt(_currentLatinWord[i]);
             flag.GetComponent<Image>().sprite = _nauticalAlphabet[flag._flagId];
-
 
             _nauticalFlags.Add(flag);
         }
@@ -103,7 +96,6 @@ public class Nautical : WordMachine
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
             _nauticalFlags[i].transform.SetParent(_nauticalSpots[i].transform, true);
-            _nauticalFlags[i].transform.position = _nauticalSpots[i].transform.position;
             _nauticalFlags[i]._attachedSpot = _nauticalSpots[i];
             _nauticalFlags[i]._attachedSpot._attachedFlag = _nauticalFlags[i];
         }
