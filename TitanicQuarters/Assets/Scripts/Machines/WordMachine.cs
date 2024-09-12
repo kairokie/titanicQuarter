@@ -49,6 +49,9 @@ public class WordMachine : Machine
     public Action OnCorrectLetter;
     public Action OnIncorrectLetter;
 
+    [SerializeField]
+    private MailContainer _mailContainer;
+
     //TEST SERIALIZED FIELDS
     [SerializeField]
     float _wordCount = 0;
@@ -114,6 +117,10 @@ public class WordMachine : Machine
         {
             _isEmpty = true;
         }
+        if (_mailContainer)
+        {
+            _mailContainer.SetNumberOfMails(_mails.Count);
+        }
     }
 
     void IncorrectWord()
@@ -136,6 +143,10 @@ public class WordMachine : Machine
             _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
             _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
             UpdateDisplay();
+        }
+        if (_mailContainer)
+        {
+            _mailContainer.SetNumberOfMails(_mails.Count);
         }
         _wordCount = _mails.Count;
         _isEmpty = false;
