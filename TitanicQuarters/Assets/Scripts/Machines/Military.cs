@@ -11,40 +11,55 @@ public class Military : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
 
-    // Start is called before the first frame update
-    void Start()
+    //Errors
+    private float _errorDelay;
+
+    [SerializeField]
+    private float _errorDelayMax = 0.5f;
+
+    public string s;
+    public string s2;
+
+
+    override protected void Awake()
     {
         _doMatchToLatin = true;
         _machineLanguage = Alphabets.MILITARY;
-        
-        _mails.Add(CreateLetter("test"));
-        _mails.Add(CreateLetter("sst"));
-        _mails.Add(CreateLetter("arbre"));
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
+        //AddMail(CreateLetter("urban"));
+
 
         OnCorrectWord += CorrectWordDisplay;
         OnCorrectLetter += Correct;
         OnIncorrectWord += ErrorWordDisplay;
         OnIncorrectLetter += Error;
+
+        base.Awake();
+
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+       
     }
 
     void Update()
     {
         InputDetection();
-        if (_textDisplay != null)
+        if (_errorDelay > 0)
         {
-            _textDisplay.text = _currentText;
+            _errorDelay -= Time.deltaTime;
         }
-        if (_questionTextDisplay != null)
-        {
-            _questionTextDisplay.text = CurrentMachineWord;
-        }
+        s = _currentMachineWord;
+        s2 = _currentLatinWord;
     }
 
     protected override void InputDetection()
     {
         base.InputDetection();
+        if ( _mails.Count == 0)
+        {
+            return;
+        }
 
         for (KeyCode i = KeyCode.A; i <= KeyCode.Z; i++)
         {
@@ -61,6 +76,32 @@ public class Military : WordMachine
         if (Input.GetKeyUp(KeyCode.Return))
         {
             SendWord();
+        }
+    }
+
+    protected override void ClearDisplay()
+    {
+        Debug.Log("Clear display");
+        if (_textDisplay != null)
+        {
+            _textDisplay.text = "";
+        }
+        if (_questionTextDisplay != null)
+        {
+            _questionTextDisplay.text = "";
+        }
+    }
+
+    override protected void UpdateDisplay()
+    {
+        base.UpdateDisplay();
+        if (_textDisplay != null)
+        {
+            _textDisplay.text = _currentText;
+        }
+        if (_questionTextDisplay != null)
+        {
+            _questionTextDisplay.text = CurrentMachineWord;
         }
     }
 
@@ -82,23 +123,31 @@ public class Military : WordMachine
 
         //Correct input
         CorrectLetter();
+        UpdateDisplay();
     }
 
     void CorrectLetter()
     {
         _currentText += CurrentLatinWord.ElementAt(_currentLetterIndex);
         _currentLetterIndex++;
-        // Check for spaces
-        
+        UpdateDisplay();
+
         OnCorrectLetter?.Invoke();
     }
 
     public void typingError()
     {
         OnIncorrectLetter?.Invoke();
+        ErrorTimeout();
         Debug.Log("Typing Error");
+        UpdateDisplay();
     }
 
+
+    private void ErrorTimeout()
+    {
+        _errorDelay = _errorDelayMax;
+    }
 
     public override void Error()
     {

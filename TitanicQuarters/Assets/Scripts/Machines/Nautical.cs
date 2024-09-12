@@ -26,37 +26,34 @@ public class Nautical : WordMachine
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
 
+    
+    
     private bool _holdingFlag = false;
+
+    override protected void Awake()
+    {
+        _doMatchToLatin = true;
+        _machineLanguage = Alphabets.NAUTIC;
+        //AddMail(CreateLetter("test"));
+        OnCorrectWord += CorrectWordDisplay;
+        OnCorrectLetter += Correct;
+        OnIncorrectWord += ErrorWordDisplay;
+        OnIncorrectLetter += Error;
+        base.Awake();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        _doMatchToLatin = true;
-        _machineLanguage = Alphabets.NAUTIC;
-        //_mails.Add(CreateLetter("a"));
-        _mails.Add(CreateLetter("test"));
-        _mails.Add(CreateLetter("arbre"));
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
+        
 
-        OnCorrectWord += CorrectWordDisplay;
-        OnCorrectWord += ResetNauticalSpots;
-        OnCorrectLetter += Correct;
-        OnIncorrectWord += ErrorWordDisplay;
-        OnIncorrectLetter += Error;
-
-        ResetNauticalSpots();
+        //ResetNauticalSpots();
     }
 
     // Update is called once per frame
     void Update()
     {
         InputDetection();
-
-        if (_questionTextDisplay != null)
-        {
-            _questionTextDisplay.text = CurrentLatinWord;
-        }
     }
 
     void ResetNauticalSpots()
@@ -99,10 +96,6 @@ public class Nautical : WordMachine
             _nauticalFlags[i]._attachedSpot._attachedFlag = _nauticalFlags[i];
         }
 
-        //if (_currentLatinWord.Length > 4)
-        //{
-        //    _NauticalSpotCenterPosition.GetComponent<HorizontalLayoutGroup>().spacing = 15f * (_currentLatinWord.Length - 4) * 0.66f;
-        //}
     }
 
     protected override void InputDetection()
@@ -191,6 +184,29 @@ public class Nautical : WordMachine
             }
         }
         */
+    }
+
+    override protected void UpdateDisplay()
+    {
+        base.UpdateDisplay();
+        _questionTextDisplay.text = CurrentLatinWord;
+        ResetNauticalSpots();
+    }
+
+    override protected void ClearDisplay()
+    {
+        foreach (NauticalSpot nauticalSpot in _nauticalSpots)
+        {
+            Destroy(nauticalSpot.gameObject);
+        }
+        _nauticalSpots.Clear();
+        foreach (NauticalFlag nauticalFlag in _nauticalFlags)
+        {
+            Destroy(nauticalFlag.gameObject);
+        }
+        _nauticalFlags.Clear();
+
+        _questionTextDisplay.text = "";
     }
 
 
