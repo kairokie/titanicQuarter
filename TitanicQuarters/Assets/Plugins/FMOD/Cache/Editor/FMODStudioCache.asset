@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 1197935773
     Data4: -855281669
   Banks:
-  - {fileID: 631370783302160817}
+  - {fileID: 357034120706392300}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -31,6 +31,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 186923
+--- !u!114 &-8796060010390675957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UIBank.bank
+  m_EditorClassIdentifier: 
+  Path: ../TitanicQuartersFMOD/Build/Desktop/UIBank.bank
+  Name: UIBank
+  StudioPath: bank:/UIBank
+  lastModified: 638617385236676461
+  FileSizes:
+  - Name: Desktop
+    Value: 25888
+  Exists: 1
 --- !u!114 &-8129503189310995668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,27 +99,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-6485877922184701598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: D:/TitanicQuartersFMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638617362900000000
-  FileSizes:
-  - Name: Desktop
-    Value: 1376
-  Exists: 1
---- !u!114 &-4139584848168081124
+--- !u!114 &-4507783560010968277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,13 +111,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/SFXBank.bank
   m_EditorClassIdentifier: 
-  Path: D:/TitanicQuartersFMOD/Build/Desktop/SFXBank.bank
+  Path: ../TitanicQuartersFMOD/Build/Desktop/SFXBank.bank
   Name: SFXBank
   StudioPath: bank:/SFXBank
-  lastModified: 638617362940000000
+  lastModified: 638617385236655766
   FileSizes:
   - Name: Desktop
     Value: 23168
+  Exists: 1
+--- !u!114 &-3351102849984592327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../TitanicQuartersFMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638617385235915938
+  FileSizes:
+  - Name: Desktop
+    Value: 1376
   Exists: 1
 --- !u!114 &-2298077530422795988
 MonoBehaviour:
@@ -180,11 +200,11 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3973294513937636531}
-  - {fileID: -6485877922184701598}
-  - {fileID: 631370783302160817}
-  - {fileID: -4139584848168081124}
-  - {fileID: 2011514801435959432}
+  - {fileID: 3632451359125061626}
+  - {fileID: -3351102849984592327}
+  - {fileID: 357034120706392300}
+  - {fileID: -4507783560010968277}
+  - {fileID: -8796060010390675957}
   EditorEvents:
   - {fileID: -8811995004754915304}
   - {fileID: 5123697259265919275}
@@ -193,12 +213,12 @@ MonoBehaviour:
   - {fileID: 6443352303395120388}
   - {fileID: -1685016447968696835}
   MasterBanks:
-  - {fileID: -6485877922184701598}
+  - {fileID: -3351102849984592327}
   StringsBanks:
-  - {fileID: 3973294513937636531}
-  cacheTime: 638617362940000000
+  - {fileID: 3632451359125061626}
+  cacheTime: 638617385236676461
   cacheVersion: 131619
---- !u!114 &631370783302160817
+--- !u!114 &357034120706392300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,35 +230,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/MusBank.bank
   m_EditorClassIdentifier: 
-  Path: D:/TitanicQuartersFMOD/Build/Desktop/MusBank.bank
+  Path: ../TitanicQuartersFMOD/Build/Desktop/MusBank.bank
   Name: MusBank
   StudioPath: bank:/MusBank
-  lastModified: 638617362940000000
+  lastModified: 638617385236581686
   FileSizes:
   - Name: Desktop
     Value: 5687008
   Exists: 1
---- !u!114 &2011514801435959432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/UIBank.bank
-  m_EditorClassIdentifier: 
-  Path: D:/TitanicQuartersFMOD/Build/Desktop/UIBank.bank
-  Name: UIBank
-  StudioPath: bank:/UIBank
-  lastModified: 638617362940000000
-  FileSizes:
-  - Name: Desktop
-    Value: 25888
-  Exists: 1
---- !u!114 &3973294513937636531
+--- !u!114 &3632451359125061626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,10 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: D:/TitanicQuartersFMOD/Build/Desktop/Master.strings.bank
+  Path: ../TitanicQuartersFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638617362900000000
+  lastModified: 638617385235930298
   FileSizes:
   - Name: Desktop
     Value: 1192
@@ -277,7 +277,7 @@ MonoBehaviour:
     Data3: 2019601026
     Data4: 394233998
   Banks:
-  - {fileID: -4139584848168081124}
+  - {fileID: -4507783560010968277}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -328,7 +328,7 @@ MonoBehaviour:
     Data3: 965320381
     Data4: -1833889650
   Banks:
-  - {fileID: 2011514801435959432}
+  - {fileID: -8796060010390675957}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

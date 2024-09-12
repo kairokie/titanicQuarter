@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8561293901828501499}
   - component: {fileID: 6401474888141388783}
+  - component: {fileID: 7967976333918846352}
+  - component: {fileID: 5996789464436386089}
   m_Layer: 0
   m_Name: T_GameManager
   m_TagString: Untagged
@@ -45,7 +47,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _telegraph: {fileID: 0}
-  _inputListener: {fileID: 0}
-  _scoreManager: {fileID: 0}
+  _military: {fileID: 0}
+  _nautical: {fileID: 0}
+  _mail: {fileID: 0}
+  _frustrationManager: {fileID: 0}
+  _cameraManager: {fileID: 0}
   _gameMode: 0
-  _frustration: 0
+  _currentMachine: {fileID: 0}
+  _musicSound: {fileID: 5996789464436386089}
+  _mailSpawned: 152
+--- !u!114 &7967976333918846352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625885123564261220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cf734f650076a4688366de1bfb9d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scorePerWordSize: 
+  _score: 0
+  _scoreDisplay: {fileID: 0}
+--- !u!114 &5996789464436386089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625885123564261220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -295296167
+      Data2: 1181131638
+      Data3: 1197935773
+      Data4: -855281669
+    Path: event:/Musique/Mus
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

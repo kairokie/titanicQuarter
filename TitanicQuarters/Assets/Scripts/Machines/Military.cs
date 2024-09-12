@@ -44,13 +44,14 @@ public class Military : WordMachine
 
     void Update()
     {
-        InputDetection();
-        if (_errorDelay > 0)
+        if (!GameManager.isPaused)
         {
-            _errorDelay -= Time.deltaTime;
+            InputDetection();
+            if (_errorDelay > 0)
+            {
+                _errorDelay -= Time.deltaTime;
+            }
         }
-        s = _currentMachineWord;
-        s2 = _currentLatinWord;
     }
 
     protected override void InputDetection()

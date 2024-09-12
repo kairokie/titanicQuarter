@@ -26,8 +26,8 @@ public class Nautical : WordMachine
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
 
-    
-    
+
+
     private bool _holdingFlag = false;
 
     override protected void Awake()
@@ -45,7 +45,7 @@ public class Nautical : WordMachine
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         //ResetNauticalSpots();
     }
@@ -53,7 +53,10 @@ public class Nautical : WordMachine
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
+        if (!GameManager.isPaused)
+        {
+            InputDetection();
+        }
     }
 
     void ResetNauticalSpots()
@@ -72,6 +75,7 @@ public class Nautical : WordMachine
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
             NauticalSpot spot = Instantiate(_nauticalSpotPrefab, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+
             spot._distanceBetweenSpots = _distanceBetweenSpots;
             spot._previewLetter.text = _currentLatinWord[i].ToString();
 
