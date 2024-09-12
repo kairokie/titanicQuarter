@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{30f88146-6242-4aab-86eb-0cde79af18e2}">
 		<property name="assetPath">
-			<value>cam_move3.wav</value>
+			<value>SoundDesign/UX/CAMERA/cam_move3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
