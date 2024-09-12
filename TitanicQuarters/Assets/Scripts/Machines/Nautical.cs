@@ -11,6 +11,7 @@ public class Nautical : WordMachine
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
     public RectTransform _NauticalSpotCenterPosition;
+
     [SerializeField]
     private float _distanceBetweenSpots = 25;
 
@@ -25,36 +26,36 @@ public class Nautical : WordMachine
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
 
+
+
     private bool _holdingFlag = false;
+
+    override protected void Awake()
+    {
+        _doMatchToLatin = true;
+        _machineLanguage = Alphabets.NAUTIC;
+        //AddMail(CreateLetter("test"));
+        OnCorrectWord += CorrectWordDisplay;
+        OnCorrectLetter += Correct;
+        OnIncorrectWord += ErrorWordDisplay;
+        OnIncorrectLetter += Error;
+        base.Awake();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        _doMatchToLatin = true;
-        _machineLanguage = Alphabets.NAUTIC;
-        _mails.Add(CreateLetter("a"));
-        _mails.Add(CreateLetter("test"));
-        _mails.Add(CreateLetter("arbre"));
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
 
-        OnCorrectWord += CorrectWordDisplay;
-        OnCorrectWord += ResetNauticalSpots;
-        OnCorrectLetter += Correct;
-        OnIncorrectWord += ErrorWordDisplay;
-        OnIncorrectLetter += Error;
 
-        ResetNauticalSpots();
+        //ResetNauticalSpots();
     }
 
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
-
-        if (_questionTextDisplay != null)
+        if (!GameManager.isPaused)
         {
-            _questionTextDisplay.text = CurrentLatinWord;
+            InputDetection();
         }
     }
 
@@ -62,28 +63,51 @@ public class Nautical : WordMachine
     {
         foreach (NauticalSpot nauticalSpot in _nauticalSpots)
         {
-            Destroy(nauticalSpot);
+            Destroy(nauticalSpot.gameObject);
         }
+        _nauticalSpots.Clear();
         foreach (NauticalFlag nauticalFlag in _nauticalFlags)
         {
-            Destroy(nauticalFlag);
+            Destroy(nauticalFlag.gameObject);
         }
-
+        _nauticalFlags.Clear();
 
 
         float dist = _nauticalSpotPrefab.GetComponent<RectTransform>().sizeDelta.x + _distanceBetweenSpots;
-        Vector3 halfSizeX = new Vector3(dist / 2f, 0, 0) * Mathf.Max(_currentLatinWord.Length - 1, 0);
+        dist *= _NauticalSpotCenterPosition.lossyScale.x;
+        Vector3 halfSizeX = _NauticalSpotCenterPosition.right * dist / 2 * Mathf.Max(_currentLatinWord.Length - 1, 0);
         Vector3 leftPos = _NauticalSpotCenterPosition.position - halfSizeX;
 
 
         for (int i = 0; i < _currentLatinWord.Length; i++)
         {
-            Vector3 offset = new Vector3(dist, 0, 0) * i; 
-            Instantiate(_nauticalSpotPrefab, leftPos + offset ,Quaternion.identity, _NauticalSpotCenterPosition);
-            GameObject flag = Instantiate(_nauticalFlagPrefab, leftPos + offset, Quaternion.identity, _NauticalSpotCenterPosition);
-            flag.GetComponent<NauticalFlag>()._flagId = Langages.characterToInt(_currentLatinWord[i]);
-            flag.GetComponent<Image>().sprite = _nauticalAlphabet[i];
+            Vector3 offset = _NauticalSpotCenterPosition.right * dist * i;
+            NauticalSpot spot = Instantiate(_nauticalSpotPrefab, (leftPos + offset), _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalSpot>();
+            spot._distanceBetweenSpots = _distanceBetweenSpots;
+
+            _nauticalSpots.Add(spot);
         }
+
+        for (int i = 0; i < _currentLatinWord.Length; i++)
+        {
+            NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _nauticalSpots[i].transform.position, _NauticalSpotCenterPosition.rotation, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
+            flag._flagId = Langages.characterToInt(_currentLatinWord[i]);
+            flag.GetComponent<Image>().sprite = _nauticalAlphabet[flag._flagId];
+
+
+            _nauticalFlags.Add(flag);
+        }
+
+        _nauticalFlags.Shuffle();
+
+        for (int i = 0; i < _currentLatinWord.Length; i++)
+        {
+            _nauticalFlags[i].transform.SetParent(_nauticalSpots[i].transform, true);
+            _nauticalFlags[i].transform.position = _nauticalSpots[i].transform.position;
+            _nauticalFlags[i]._attachedSpot = _nauticalSpots[i];
+            _nauticalFlags[i]._attachedSpot._attachedFlag = _nauticalFlags[i];
+        }
+
     }
 
     protected override void InputDetection()
@@ -172,6 +196,29 @@ public class Nautical : WordMachine
             }
         }
         */
+    }
+
+    override protected void UpdateDisplay()
+    {
+        base.UpdateDisplay();
+        _questionTextDisplay.text = CurrentLatinWord;
+        ResetNauticalSpots();
+    }
+
+    override protected void ClearDisplay()
+    {
+        foreach (NauticalSpot nauticalSpot in _nauticalSpots)
+        {
+            Destroy(nauticalSpot.gameObject);
+        }
+        _nauticalSpots.Clear();
+        foreach (NauticalFlag nauticalFlag in _nauticalFlags)
+        {
+            Destroy(nauticalFlag.gameObject);
+        }
+        _nauticalFlags.Clear();
+
+        _questionTextDisplay.text = "";
     }
 
 

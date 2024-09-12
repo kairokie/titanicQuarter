@@ -36,8 +36,8 @@ public class WordMachine : Machine
 
     // Reading indexes 
 
-    protected int _currentTestText = 0;
     protected int _currentLetterIndex = 0;
+    protected bool _isEmpty = true;
 
 
     //Current text
@@ -52,6 +52,13 @@ public class WordMachine : Machine
     //TEST SERIALIZED FIELDS
     [SerializeField]
     float _wordCount = 0;
+
+
+    protected virtual void Awake()
+    {
+        ClearDisplay();
+        gameObject.SetActive(false);
+    }
     public void SendWord()
     {
         Debug.Log("Word: " + _currentText);
@@ -71,15 +78,42 @@ public class WordMachine : Machine
     {
         _frustrationManager?.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
         _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
-        
-        _currentTestText++;
-        _currentTestText %= _mails.Count;
-        _currentMachineWord = _mails[_currentTestText].Word.GetWord(_machineLanguage);
-        _currentLatinWord = _mails[_currentTestText].Word.GetWord(Alphabets.LATIN);
-      
-        _mails.RemoveAt(0);
+
+        RemoveMail();
+        _currentLatinWord = "";
+        _currentMachineWord = "";
+        _currentText = "";
+        _currentLetterIndex = 0;
+        ClearDisplay();
+
+        if (_mails.Count > 0)
+        {
+            _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
+            _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
+            UpdateDisplay();
+        }
         Debug.Log("Correct");
         OnCorrectWord?.Invoke();
+    }
+
+    protected virtual void UpdateDisplay()
+    {
+
+    }
+
+    protected virtual void ClearDisplay()
+    {
+
+    }
+
+    void RemoveMail()
+    {
+        _mails.RemoveAt(0);
+        _wordCount = _mails.Count;
+        if (_mails.Count == 0)
+        {
+            _isEmpty = true;
+        }
     }
 
     void IncorrectWord()
@@ -97,12 +131,18 @@ public class WordMachine : Machine
     public void AddMail(MailLetter mail)
     {
         _mails.Add(mail);
+        if (_mails.Count == 1)
+        {
+            _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
+            _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
+            UpdateDisplay();
+        }
         _wordCount = _mails.Count;
+        _isEmpty = false;
     }
 
     public bool TryPutMail(MailLetter mail)
     {
-        Debug.Log("TryPutMail in WordMachine");
         if (mail.Machine == this && MaxMails >= _mails.Count)
         {
             AddMail(mail);
@@ -121,24 +161,24 @@ public class WordMachine : Machine
         mail.Word = new Word(word);
         return mail;
     }
-  
+
 
     public virtual void Error()
     {
-        
+
     }
 
     public virtual void Correct()
     {
-        
+
     }
 
     public virtual void CorrectWordDisplay()
     {
-        
+
     }
     public virtual void ErrorWordDisplay()
     {
-        
+
     }
 }

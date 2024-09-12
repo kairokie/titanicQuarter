@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,8 @@ public class Mail : Machine
     [SerializeField]
     float _pickedMailDistanceToCamera = 10.0f;
 
-    // List of all possible words
+    // List of all possible wordsµ
+    [SerializeField]
     List<Word> _AllWords = new List<Word>();
     public List<Word> Words { get => _AllWords; }
 
@@ -35,6 +37,12 @@ public class Mail : Machine
 
     // Letter picked
     public MailLetter _pickedLetter = null;
+
+    // Mail Spawn transform
+    [SerializeField] Transform _spawnCentre;
+    [SerializeField] float _spawnAreaLength = 0f;
+    [SerializeField] float _spawnAreaWidth = 0f;
+    [SerializeField] float _spawnHeight = 2.0f;
 
     // Coroutines
     Coroutine _mailArrivalCoroutine = null;
@@ -62,7 +70,10 @@ public class Mail : Machine
     // Update is called once per frame
     void Update()
     {
-        InputDetection();
+        if (!GameManager.isPaused)
+        {
+            InputDetection();
+        }
     }
 
     
@@ -125,11 +136,10 @@ public class Mail : Machine
         }
     }
 
+    IEnumerator LetterArrivalCoroutine2(float timeBetween)
 
-    IEnumerator LetterArrivalCoroutine(float timeBetween)
+
     {
-        //if (!_isActivated) ;
-        Debug.Log("LetterArrivalCoroutine started");
         while (_isRunning)
         {
             if (_letterPrefab1)
@@ -138,11 +148,11 @@ public class Mail : Machine
                 MailLetter mailLetter = letter.GetComponent<MailLetter>();
                 if (mailLetter)
                 {
-                    mailLetter.Word = _AllWords[Random.Range(0, _AllWords.Count)];
+                    mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
                 }
-                mailLetter.transform.position = transform.position + _mailOffset * _numberOfMails;
-                mailLetter.transform.rotation = Quaternion.Euler(-45f, -90, 0);
-                _numberOfMails++;
+                //mailLetter.transform.position = transform.position + _mailOffset * _numberOfMails;
+                //mailLetter.transform.rotation = Quaternion.Euler(-45f, -90, 0);
+                //_numberOfMails++;
             }
             else
             {
@@ -153,6 +163,52 @@ public class Mail : Machine
 
     }
 
+    IEnumerator LetterArrivalCoroutine(float timeBetween)
+    {
+        //if (!_isActivated) ;
+        Debug.Log("LetterArrivalCoroutine started");
+        while (_isRunning)
+        {
+            SpawnMail();
+            yield return new WaitForSeconds(timeBetween);
+        }
+    }
+
+    void SpawnMail()
+    {
+        if (_letterPrefab1)
+        {
+            GameObject letter = Instantiate(_letterPrefab1);
+            MailLetter mailLetter = letter.GetComponent<MailLetter>();
+            if (mailLetter)
+            {
+                mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
+            }
+            float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
+            float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
+            float xPos = xOffset + _spawnCentre.position.x;
+            float zPos = zOffset + _spawnCentre.position.z;
+            float yPos = _spawnHeight;
+
+            float xRot = UnityEngine.Random.Range(-60.0f, 60.0f);
+            float zRot = UnityEngine.Random.Range(-60.0f, 60.0f);
+
+            mailLetter.transform.position = new Vector3(xPos, yPos, zPos);
+            mailLetter.transform.rotation = Quaternion.Euler(xRot, -90, zRot);
+            _numberOfMails++;
+        }
+        else
+        {
+            Debug.Log("NO LETTER PREFABS");
+        }
+    }
+
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireCube(_spawnCentre.position, new Vector3(_spawnAreaLength * 2, _spawnHeight, _spawnAreaWidth * 2));
+    }
     private void MoveMail()
     {
         Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;
@@ -172,7 +228,6 @@ public class Mail : Machine
 
     void TryPutMail(WordMachine machine, MailLetter mail)
     {
-        Debug.Log("TryPutMail in Mail");
         if (machine.TryPutMail(mail))
         {
             
@@ -181,6 +236,7 @@ public class Mail : Machine
             _pickedLetter = null;
         }
     }
+
 
     IEnumerator mailMovementCoroutine()
     {
@@ -212,9 +268,19 @@ public class Mail : Machine
         string line;
         while ((line = reader.ReadLine()) != null)
         {
-            if (line.All(char.IsLetter))
+            string[] subchains = line.Split(' ');
+            if (subchains.Length != 2)
             {
-                _AllWords.Add(new Word(line.ToLower()));
+                Debug.LogError("Error in WordList.txt");
+                return;
+            }
+            string stringSub = subchains[0];
+            string intSub = subchains[1];
+            int importance = -1;
+            int.TryParse(intSub,out importance);
+            if (stringSub.All(char.IsLetter) && importance != -1 && importance >=0 && importance < Enum.GetNames(typeof(WordSignificance)).Length)
+            {
+                _AllWords.Add(new Word(stringSub.ToLower(),(WordSignificance)importance));
             }
         }
     }

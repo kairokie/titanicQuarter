@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{b77c7ac2-777e-4f90-bf51-3f3c76c28af2}">
+		<property name="name">
+			<value>MENU SWITCH</value>
+		</property>
+		<relationship name="folder">
+			<destination>{031657ca-d5c8-4bd1-ab62-4ece5f799e13}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6f9a9cb4-df28-4cf0-9af6-6470954de15b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6f9a9cb4-df28-4cf0-9af6-6470954de15b}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
