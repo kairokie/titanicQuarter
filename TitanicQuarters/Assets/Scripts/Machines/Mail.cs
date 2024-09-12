@@ -208,7 +208,8 @@ public class Mail : Machine
         {
             
             mail.DropLetter();
-            Destroy(mail.gameObject);
+            mail.gameObject.SetActive(false);
+            //Destroy(mail.gameObject);
             _pickedLetter = null;
         }
     }

@@ -152,29 +152,28 @@ public class Telegraph : WordMachine
 
     protected override void InputDetection()
     {
-        base.InputDetection();
-        if (_errorDelay > 0 || _mails.Count == 0)
+        if (_currentMail && _errorDelay <=0 )
         {
-            return;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            // "Dot " in morse code
-            ReadChar('•');
-            _animator.Play("Tic");
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            // "Dash" in morse code
-            ReadChar('-');
-            _animator.Play("Tic");
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                // "Dot " in morse code
+                ReadChar('•');
+                _animator.Play("Tic");
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                // "Dash" in morse code
+                ReadChar('-');
+                _animator.Play("Tic");
+            }
 
-        // if enter key is pressed validate the word
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            SendWord();
+            // if enter key is pressed validate the word
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                SendWord();
+            }
         }
+        base.InputDetection();
     }
 
     public override void Error()

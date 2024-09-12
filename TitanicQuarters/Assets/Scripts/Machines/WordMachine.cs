@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -39,6 +40,9 @@ public class WordMachine : Machine
     protected int _currentLetterIndex = 0;
     protected bool _isEmpty = true;
 
+    [SerializeField]
+    protected MailLetter _currentMail;
+
 
     //Current text
     protected string _currentText = "";
@@ -56,7 +60,47 @@ public class WordMachine : Machine
     [SerializeField]
     float _wordCount = 0;
 
+    // First Add mail to the queue
 
+    public void AddMail2nd(MailLetter mail)
+    {
+        _mails.Add(mail);
+        if (_mailContainer)
+        {
+            _mailContainer.SetNumberOfMails(_mails.Count);
+        }
+        _wordCount = _mails.Count;
+        _isEmpty = false;
+    }
+    // Then sometime pop the queue and stock it in the current mail
+    void PopMail ()
+    {
+        if (_mails.Count > 0 && _currentMail == null)
+        {
+            _currentMail = _mails[0];
+            _mails.RemoveAt(0);
+            if (_mailContainer)
+            {
+                _mailContainer.SetNumberOfMails(_mails.Count);
+            }
+            _currentLatinWord = _currentMail.Word.GetWord(Alphabets.LATIN);
+            _currentMachineWord = _currentMail.Word.GetWord(_machineLanguage);
+            _wordCount = _mails.Count;
+            _isEmpty = _mails.Count == 0;
+            UpdateDisplay();
+        }
+    }
+    // Whenever it's finished empty the current mail
+    void EmptyMail()
+    {
+        if (_currentMail != null)
+        {
+            Destroy(_currentMail.gameObject);
+            _currentMail = null;
+            UpdateDisplay();
+        }
+    }
+    // Sometime pop the next if possible
     protected virtual void Awake()
     {
         ClearDisplay();
@@ -77,25 +121,31 @@ public class WordMachine : Machine
         ResetWord();
     }
 
+    void ResetWords()
+    {
+        _currentLatinWord = "";
+        _currentMachineWord = "";
+        _currentText = "";
+        _currentLetterIndex = 0;
+    }
+
     void CorrectWord()
     {
         _frustrationManager?.DecrementFrustrationWithWordSize(_currentLatinWord.Length);
         _scoreManager?.IncrementScoreWithWordSize(_currentLatinWord.Length);
 
-        RemoveMail();
-        _currentLatinWord = "";
-        _currentMachineWord = "";
-        _currentText = "";
-        _currentLetterIndex = 0;
+        //RemoveMail();
+        EmptyMail();
+        ResetWords();     
         ClearDisplay();
 
-        if (_mails.Count > 0)
-        {
-            _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
-            _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
-            UpdateDisplay();
-        }
-        Debug.Log("Correct");
+        //if (_mails.Count > 0)
+        //{
+        //    _currentMachineWord = _mails[0].Word.GetWord(_machineLanguage);
+        //    _currentLatinWord = _mails[0].Word.GetWord(Alphabets.LATIN);
+        //    UpdateDisplay();
+        //}
+        //Debug.Log("Correct");
         OnCorrectWord?.Invoke();
     }
 
@@ -156,7 +206,7 @@ public class WordMachine : Machine
     {
         if (mail.Machine == this && MaxMails >= _mails.Count)
         {
-            AddMail(mail);
+            AddMail2nd(mail);
             return true;
         }
         else
@@ -173,6 +223,15 @@ public class WordMachine : Machine
         return mail;
     }
 
+    override protected void InputDetection()
+    {
+        base.InputDetection();
+        if (_currentMail == null && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("InputDetection WM");
+            PopMail();
+        }
+    }
 
     public virtual void Error()
     {

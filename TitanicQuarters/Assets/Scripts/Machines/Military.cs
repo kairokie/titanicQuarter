@@ -44,7 +44,7 @@ public class Military : WordMachine
 
     void Update()
     {
-        if (!GameManager.isPaused)
+        if (!GameManager.isPaused )
         {
             InputDetection();
             if (_errorDelay > 0)
@@ -56,27 +56,26 @@ public class Military : WordMachine
 
     protected override void InputDetection()
     {
-        base.InputDetection();
-        if ( _mails.Count == 0)
+        if (_currentMail)
         {
-            return;
-        }
-
-        for (KeyCode i = KeyCode.A; i <= KeyCode.Z; i++)
-        {
-            if (Input.GetKeyUp(i))
+            for (KeyCode i = KeyCode.A; i <= KeyCode.Z; i++)
             {
-                _animators[(int)i - 97].Play("Touche");
-                ReadChar(Langages.intTocharacter((int)i-97));
+                if (Input.GetKeyUp(i))
+                {
+                    _animators[(int)i - 97].Play("Touche");
+                    ReadChar(Langages.intTocharacter((int)i - 97));
+                }
+            }
+
+            // if enter key is pressed validate the word
+            if (Input.GetKeyUp(KeyCode.Return))
+            {
+                _animators[_animators.Count - 1].Play("Touche");
+                SendWord();
             }
         }
 
-        // if enter key is pressed validate the word
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            _animators[_animators.Count-1].Play("Touche");
-            SendWord();
-        }
+        base.InputDetection();
     }
 
     protected override void ClearDisplay()
