@@ -64,6 +64,10 @@ public class Mail : Machine
     [SerializeField]
     protected FMODUnity.StudioEventEmitter _notificationSound;
 
+    //Screen shake
+    [SerializeField]
+    private GameObject _cam;
+
 
 
     protected void Awake()
@@ -243,6 +247,10 @@ public class Mail : Machine
             mail.gameObject.SetActive(false);
             //Destroy(mail.gameObject);
             _pickedLetter = null;
+        }
+        else
+        {
+            _cam.GetComponent<CameraManager>().ScreenShake();
         }
     }
 
