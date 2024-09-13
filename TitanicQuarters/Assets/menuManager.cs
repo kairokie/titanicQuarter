@@ -39,6 +39,15 @@ public class menuManager : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FMODUnity.StudioEventEmitter[] emitters = FindObjectsOfType<FMODUnity.StudioEventEmitter>();
+        foreach (FMODUnity.StudioEventEmitter emitter in emitters)
+        {
+            emitter.Stop();
+        }
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PAUSE", 0.0f);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PANIC", 100);
+
+
     }
 
     public void QuitApplication()

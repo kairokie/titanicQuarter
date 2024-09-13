@@ -68,7 +68,7 @@ public class FrustrationManager : MonoBehaviour
                 _scoreManager.SetEndScreenScoreDisplay();
                 _gameManager.Pause();
             }
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PANIC", _frustration * 100);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PANIC",  (1 - _frustration) * 100);
             GameManager game = FindObjectOfType<GameManager>();
             if (game)
             {

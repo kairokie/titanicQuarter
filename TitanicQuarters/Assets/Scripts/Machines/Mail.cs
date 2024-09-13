@@ -298,7 +298,8 @@ public class Mail : Machine
 
     void ReadTextFile()
     {
-        string path = "Assets/Resources/WordList.txt";
+        string path = Application.dataPath + "/Resources/WordList.txt";
+        Debug.Log("path = " + path);
         StreamReader reader = new StreamReader(path);
         string line;
         while ((line = reader.ReadLine()) != null)
