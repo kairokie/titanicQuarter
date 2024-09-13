@@ -69,7 +69,7 @@ public class ScoreManager : MonoBehaviour
     public void SetEndScreenScoreDisplay()
     {
         _scoreEndScreenDisplay.text = _score.ToString();
-        _highscoreEndScreenDisplay.text = _highscore.ToString();
+        _highscoreEndScreenDisplay.text = "Highscore : " + _highscore.ToString();
 
     }
 
