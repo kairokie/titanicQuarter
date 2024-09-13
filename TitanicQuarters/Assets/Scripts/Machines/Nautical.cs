@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,9 @@ public class Nautical : WordMachine
 
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
+
+    [SerializeField]
+    private GameObject _cam;
 
 
 
@@ -103,6 +107,23 @@ public class Nautical : WordMachine
 
     }
 
+    public void CheckAnswer()
+    {
+        for (int i = 0; i < _nauticalSpots.Count; i++)
+        {
+            if (_nauticalSpots[i]._attachedFlag)
+            {
+                _currentText += Langages.intTocharacter(_nauticalSpots[i]._attachedFlag._flagId);
+            }
+            else
+            {
+                _currentText += " ";
+            }
+        }
+
+        SendWord();
+    }
+
     protected override void InputDetection()
     {
         base.InputDetection();
@@ -110,19 +131,7 @@ public class Nautical : WordMachine
         // if enter key is pressed validate the word
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            for (int i = 0; i < _nauticalSpots.Count; i++)
-            {
-                if (_nauticalSpots[i]._attachedFlag)
-                {
-                    _currentText += Langages.intTocharacter(_nauticalSpots[i]._attachedFlag._flagId);
-                }
-                else
-                {
-                    _currentText += " ";
-                }
-            }
-
-            SendWord();
+            CheckAnswer();
         }
 
         /*
@@ -218,6 +227,7 @@ public class Nautical : WordMachine
     public override void Error()
     {
         _feedbackTextDisplay.text = "";
+        _cam.GetComponent<CameraManager>().ScreenShake();
     }
 
     public override void Correct()
@@ -232,5 +242,6 @@ public class Nautical : WordMachine
     public override void ErrorWordDisplay()
     {
         _feedbackTextDisplay.text = "Incorrect!";
+        _cam.GetComponent<CameraManager>().ScreenShake();
     }
 }

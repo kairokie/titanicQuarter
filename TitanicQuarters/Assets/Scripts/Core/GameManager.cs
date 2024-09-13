@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         _paused = true;
         Time.timeScale = 0;
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UnPause()
+    public void UnPause()
     {
         _paused = false;
         Time.timeScale = 1;
@@ -224,6 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        UnPause();
         ChangeGameMode(_mail);
     }
 }
