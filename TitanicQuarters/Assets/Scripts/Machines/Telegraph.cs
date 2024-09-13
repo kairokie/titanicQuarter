@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class Telegraph : WordMachine
@@ -165,17 +166,22 @@ public class Telegraph : WordMachine
     {
         if (_currentMail && _errorDelay <=0 )
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                // "Dot " in morse code
-                ReadChar('•');
-                _animator.Play("Tic");
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                // "Dash" in morse code
-                ReadChar('-');
-                _animator.Play("Tic");
+                // we're not clicking on a UI object, so do your normal movement stuff here
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    // "Dot " in morse code
+                    ReadChar('•');
+                    _animator.Play("Tic");
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    // "Dash" in morse code
+                    ReadChar('-');
+                    _animator.Play("Tic");
+                }
             }
 
             // if enter key is pressed validate the word
