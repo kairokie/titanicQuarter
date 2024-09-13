@@ -218,15 +218,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            menuManager.GetComponent<menuManager>().Pause();
+            
             Pause();
-            if (menuManager != null) //Apply UI
-            {
-                menuManager.GetComponent<menuManager>().Pause();
-            }
-            else
-            {
-                print("Pause menu UI not found");
-            }
         }
     }
 
