@@ -5,20 +5,37 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    /*
-    [SerializeField]
-    public List<int> _scorePerWordSize;
-    */
+    //[SerializeField]
+    //public List<int> _scorePerWordSize;
+
     [SerializeField]
     private int _score = 0;
 
+    private int _highscore;
+
     [SerializeField]
-    private TextMeshProUGUI _scoreDisplay;
+    private TextMeshProUGUI _scoreGameDisplay;
+
+
+    [SerializeField]
+    private TextMeshProUGUI _highscoreMenuDisplay;
+
+    [SerializeField]
+    private TextMeshProUGUI _highscoreEndScreenDisplay;
+    [SerializeField]
+    private TextMeshProUGUI _scoreEndScreenDisplay;
+
+    public void Start()
+    {
+        _highscore = PlayerPrefs.GetInt("highscore", _highscore);
+
+        SetMenuScoreDisplay();
+    }
 
     public void IncrementScore()
     {
         _score++;
-        _scoreDisplay.text = "Score : " + _score.ToString();
+        _scoreGameDisplay.text = "Score : " + _score.ToString();
     }
 
     /*
@@ -38,4 +55,17 @@ public class ScoreManager : MonoBehaviour
         _scoreDisplay.text = "Score : " + _score.ToString();
     }
     */
+
+    public void SetMenuScoreDisplay()
+    {
+        _highscoreMenuDisplay.text = "Score : " + _score.ToString();
+    }
+
+    public void SetEndScreenScoreDisplay()
+    {
+        _scoreEndScreenDisplay.text = "Score : " + _score.ToString();
+        _highscoreEndScreenDisplay.text = "Score : " + _highscore.ToString();
+
+    }
+
 }

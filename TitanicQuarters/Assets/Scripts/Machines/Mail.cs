@@ -11,7 +11,11 @@ public class Mail : Machine
 
     // TODO : mail box
     [SerializeField]
-    GameObject _letterPrefab1;
+    GameObject _morseLetterPrefab;
+    [SerializeField]
+    GameObject _nauticLetterPrefab;
+    [SerializeField]
+    GameObject _militaryLetterPrefab;
 
     //Mail spawn variables
     [SerializeField]
@@ -155,15 +159,39 @@ public class Mail : Machine
 
     void SpawnMail()
     {
-        if (_letterPrefab1)
+        if (_morseLetterPrefab && _nauticLetterPrefab && _militaryLetterPrefab)
         {
-            GameObject letter = Instantiate(_letterPrefab1);
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            int machineIndex = UnityEngine.Random.Range(0, 3);
+            Machine _machine = null;
+            GameObject _prefab = null;
+
+            if (machineIndex == 0)
+            {
+                _machine = FindObjectOfType<Telegraph>(true);
+                _prefab = _morseLetterPrefab;
+            }
+            else if (machineIndex == 1)
+            {
+                _machine = FindObjectOfType<Military>(true);
+                _prefab = _militaryLetterPrefab;
+
+            }
+            else if (machineIndex == 2)
+            {
+                _machine = FindObjectOfType<Nautical>(true);
+                _prefab = _nauticLetterPrefab;
+
+            }
+
+            GameObject letter = Instantiate(_prefab);
             MailLetter mailLetter = letter.GetComponent<MailLetter>();
             if (mailLetter)
             {
                 mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
+                mailLetter.Machine = _machine;
             }
-            _notificationSound?.Play();
+            //_notificationSound?.Play();
             float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
             float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
             float xPos = xOffset + _spawnCentre.position.x;
@@ -174,7 +202,7 @@ public class Mail : Machine
             float zRot = UnityEngine.Random.Range(-60.0f, 60.0f);
 
             mailLetter.transform.position = new Vector3(xPos, yPos, zPos);
-            mailLetter.transform.rotation = Quaternion.Euler(xRot, -90, zRot);
+            mailLetter.transform.rotation = Quaternion.Euler(xRot, 90, zRot);
             _numberOfMails++;
         }
         else

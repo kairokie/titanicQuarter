@@ -7,7 +7,13 @@ public class FrustrationManager : MonoBehaviour
 {
 
     private Slider _slider;
-    
+
+    [SerializeField]
+    private menuManager _menuManager;
+
+    [SerializeField]
+    private GameManager _gameManager;
+
     [SerializeField]    
     Image _fill;
 
@@ -40,7 +46,7 @@ public class FrustrationManager : MonoBehaviour
     protected FMODUnity.StudioEventEmitter _ticTacSound;
 
     [SerializeField]
-    protected float _percentageTicTacStart = 0.16f;
+    protected float _percentageTicTacStart = 0.84f;
 
     void Start()
     {
@@ -53,6 +59,11 @@ public class FrustrationManager : MonoBehaviour
         if (!GameManager.isPaused)
         {
             IncrementFrustration();
+            if (_frustration >= 1) // lose
+            {
+                _menuManager.EndGame();
+                _gameManager.Pause();
+            }
         }
     }
 
@@ -60,7 +71,7 @@ public class FrustrationManager : MonoBehaviour
     {
         // Increment frustration
         _frustration += _frustrationPerSeconds / 100f * Time.deltaTime;
-        if(_frustration > 1 - _percentageTicTacStart && !_ticTacSound.IsPlaying())
+        if(_frustration > _percentageTicTacStart && !_ticTacSound.IsPlaying())
         {
             _ticTacSound?.Play();
         }

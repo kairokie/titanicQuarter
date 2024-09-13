@@ -73,7 +73,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/UIBank.bank
   Name: UIBank
   StudioPath: bank:/UIBank
-  lastModified: 638617881043046518
+  lastModified: 638618166907679905
   FileSizes:
   - Name: Desktop
     Value: 42208
@@ -276,7 +276,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/SFXBank.bank
   Name: SFXBank
   StudioPath: bank:/SFXBank
-  lastModified: 638617881043033485
+  lastModified: 638618166907669855
   FileSizes:
   - Name: Desktop
     Value: 243616
@@ -323,7 +323,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638617881042472205
+  lastModified: 638618166907330501
   FileSizes:
   - Name: Desktop
     Value: 1488
@@ -499,7 +499,7 @@ MonoBehaviour:
   - {fileID: -3351102849984592327}
   StringsBanks:
   - {fileID: 3632451359125061626}
-  cacheTime: 638617881043046518
+  cacheTime: 638618166907679905
   cacheVersion: 131619
 --- !u!114 &357034120706392300
 MonoBehaviour:
@@ -516,7 +516,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/MusBank.bank
   Name: MusBank
   StudioPath: bank:/MusBank
-  lastModified: 638617881043006397
+  lastModified: 638618166907669855
   FileSizes:
   - Name: Desktop
     Value: 5689056
@@ -536,7 +536,7 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638617881042487476
+  lastModified: 638618166907330501
   FileSizes:
   - Name: Desktop
     Value: 1860
