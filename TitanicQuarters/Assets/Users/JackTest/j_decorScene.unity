@@ -13717,6 +13717,7 @@ GameObject:
   - component: {fileID: 2116314821}
   - component: {fileID: 2116314820}
   - component: {fileID: 2116314822}
+  - component: {fileID: 2116314823}
   m_Layer: 0
   m_Name: CamManager
   m_TagString: Untagged
@@ -13743,6 +13744,7 @@ MonoBehaviour:
   camNautique: {fileID: 1831117151}
   _mainCamera: {fileID: 1714502439}
   _impulseSource: {fileID: 2116314822}
+  _soundEmitter: {fileID: 2116314823}
 --- !u!4 &2116314821
 Transform:
   m_ObjectHideFlags: 0
@@ -13817,6 +13819,37 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0.25, y: 0, z: 0}
+--- !u!114 &2116314823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116314819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 33833386
+      Data2: 1315458001
+      Data3: 965320381
+      Data4: -1833889650
+    Path: event:/UI/Camera
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!95 &2121401908 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5504335707475314918, guid: 4d56efb1a35674e44a186af77e23008a, type: 3}

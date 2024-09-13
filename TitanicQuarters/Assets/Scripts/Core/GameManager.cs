@@ -48,12 +48,44 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     FMODUnity.StudioEventEmitter _musicSound;
 
+    [SerializeField]
+    FMODUnity.StudioEventEmitter _buttonSound;
+
+    public void playUIButton()
+    {
+        _buttonSound?.Play();
+    }
+
     // DEBUG regular mail spawn
     public int _mailSpawned = 0;
 
     //Pause menu
     [SerializeField]
     private GameObject menuManager;
+
+    Coroutine _musicFade = null;
+
+    IEnumerator MusicFade(bool pause)
+    {
+        float maxTime = 0.1f;
+        float currentTime = 0.0f;
+        Debug.Log("Music fade");
+        while (currentTime < maxTime)
+        {
+            currentTime += Time.deltaTime;
+            float p1 = 0;
+            float p2 = 1;
+            if (!pause)
+            {
+                p1 = 1;
+                p2 = 0;
+            }
+            float t = Mathf.Lerp(p1, p2, currentTime / maxTime);
+            Debug.Log("t = " + t);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PAUSE",t);
+            yield return null;
+        }
+    }
 
 
 
@@ -204,7 +236,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         if (_musicSound)
         {
-            _musicSound.SetParameter("MENU SWITCH", 1.0f);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PAUSE", 1.0f);
+
+            //if (_musicFade == null)
+            //    _musicFade = StartCoroutine(MusicFade(true));
         }
         else
         {
@@ -218,7 +253,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         if (_musicSound)
         {
-            _musicSound.SetParameter("MENU SWITCH", 0.0f);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PAUSE", 0.0f);
+
+            //if (_musicFade == null)
+            //    _musicFade = StartCoroutine(MusicFade(false));
+
         }
     }
 
