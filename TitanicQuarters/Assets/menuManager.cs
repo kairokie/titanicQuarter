@@ -11,6 +11,7 @@ public class menuManager : MonoBehaviour
     [SerializeField] private GameObject creditsUI;
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private GameObject loseUI;
+    [SerializeField] private GameObject tutoUI;
 
     // Start is called before the first frame update
     void Start()
@@ -58,5 +59,25 @@ public class menuManager : MonoBehaviour
     public void EndGame()
     {
         loseUI.SetActive(true);
+    }
+
+    public void Credits()
+    {
+        creditsUI.SetActive(true);
+    }
+
+    public void QuitCredits()
+    {
+        creditsUI.SetActive(false);
+    }
+
+    public void Tuto()
+    {
+        tutoUI.SetActive(true);
+    }
+
+    public void QuitTuto()
+    {
+        tutoUI.SetActive(false);
     }
 }
