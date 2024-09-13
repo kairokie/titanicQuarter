@@ -107,6 +107,23 @@ public class Nautical : WordMachine
 
     }
 
+    public void CheckAnswer()
+    {
+        for (int i = 0; i < _nauticalSpots.Count; i++)
+        {
+            if (_nauticalSpots[i]._attachedFlag)
+            {
+                _currentText += Langages.intTocharacter(_nauticalSpots[i]._attachedFlag._flagId);
+            }
+            else
+            {
+                _currentText += " ";
+            }
+        }
+
+        SendWord();
+    }
+
     protected override void InputDetection()
     {
         base.InputDetection();
@@ -114,19 +131,7 @@ public class Nautical : WordMachine
         // if enter key is pressed validate the word
         if (Input.GetKeyUp(KeyCode.Return))
         {
-            for (int i = 0; i < _nauticalSpots.Count; i++)
-            {
-                if (_nauticalSpots[i]._attachedFlag)
-                {
-                    _currentText += Langages.intTocharacter(_nauticalSpots[i]._attachedFlag._flagId);
-                }
-                else
-                {
-                    _currentText += " ";
-                }
-            }
-
-            SendWord();
+            CheckAnswer();
         }
 
         /*
