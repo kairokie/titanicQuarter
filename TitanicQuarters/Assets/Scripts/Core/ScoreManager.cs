@@ -36,6 +36,11 @@ public class ScoreManager : MonoBehaviour
     {
         _score++;
         _scoreGameDisplay.text = "Score : " + _score.ToString();
+        if (_score > _highscore)
+        {
+            _highscore = _score;
+            PlayerPrefs.SetInt("highscore", _highscore);
+        }
     }
 
     /*
