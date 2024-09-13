@@ -24,6 +24,9 @@ public class Military : WordMachine
     [SerializeField]
     private float _errorDelayMax = 0.5f;
 
+    [SerializeField]
+    private GameObject _cam;
+
 
     override protected void Awake()
     {
@@ -158,6 +161,7 @@ public class Military : WordMachine
     {
         _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "";
+        _cam.GetComponent<CameraManager>().ScreenShake();
     }
 
     public override void Correct()
@@ -173,5 +177,6 @@ public class Military : WordMachine
     public override void ErrorWordDisplay()
     {
         _feedbackTextDisplay.text = "Incorrect!";
+        _cam.GetComponent<CameraManager>().ScreenShake();
     }
 }

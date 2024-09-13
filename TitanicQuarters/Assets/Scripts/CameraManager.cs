@@ -4,8 +4,9 @@ using UnityEngine;
 using Cinemachine;
 using static UnityEngine.Rendering.DebugUI;
 using UnityEditor;
+using System;
 
-
+[Serializable]
 public enum CameraMode
 {
     MENU,
@@ -63,6 +64,17 @@ public class CameraManager : MonoBehaviour
 
     //    camList[camName].SetActive(true); //Activate right cam
     //}
+    public void UISwitchCam(string _cameraMode)
+    {
+        switch(_cameraMode)
+        {
+            case "global": SwitchCam(CameraMode.GLOBAL); break;
+            case "nautique": SwitchCam(CameraMode.NAUTIQUE); break;
+            case "militaire": SwitchCam(CameraMode.MILITAIRE); break;
+            case "morse": SwitchCam(CameraMode.MORSE); break;
+        }
+       
+    }
 
     public void SwitchCam(CameraMode nextMode)
     {
