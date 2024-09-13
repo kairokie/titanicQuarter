@@ -58,13 +58,13 @@ public class ScoreManager : MonoBehaviour
 
     public void SetMenuScoreDisplay()
     {
-        _highscoreMenuDisplay.text = "Score : " + _score.ToString();
+        _highscoreMenuDisplay.text = _highscore.ToString();
     }
 
     public void SetEndScreenScoreDisplay()
     {
-        _scoreEndScreenDisplay.text = "Score : " + _score.ToString();
-        _highscoreEndScreenDisplay.text = "Score : " + _highscore.ToString();
+        _scoreEndScreenDisplay.text = _score.ToString();
+        _highscoreEndScreenDisplay.text = _highscore.ToString();
 
     }
 

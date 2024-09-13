@@ -14,6 +14,9 @@ public class FrustrationManager : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
+    [SerializeField]
+    private ScoreManager _scoreManager;
+
     [SerializeField]    
     Image _fill;
 
@@ -62,6 +65,7 @@ public class FrustrationManager : MonoBehaviour
             if (_frustration >= 1) // lose
             {
                 _menuManager.EndGame();
+                _scoreManager.SetEndScreenScoreDisplay();
                 _gameManager.Pause();
             }
         }

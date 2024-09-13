@@ -9247,6 +9247,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1563729306}
     - target: {fileID: 7967976333918846352, guid: 431a73f13d68e2e4c8acc82f1ef38101, type: 3}
+      propertyPath: _highscoreMenuDisplay
+      value: 
+      objectReference: {fileID: 3222285917080463859}
+    - target: {fileID: 7967976333918846352, guid: 431a73f13d68e2e4c8acc82f1ef38101, type: 3}
       propertyPath: _scoreEndScreenDisplay
       value: 
       objectReference: {fileID: 1735055671}
@@ -10598,8 +10602,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9c1d6de767287b40b0a2b7308aa8853, type: 2}
+  m_sharedMaterial: {fileID: -8908485173135436368, guid: f9c1d6de767287b40b0a2b7308aa8853, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10633,7 +10637,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -10
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -11448,8 +11452,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714502439}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08164613, y: -0.8764793, z: 0.44658843, w: 0.16023958}
-  m_LocalPosition: {x: 0.236, y: 4.45, z: -3.345}
+  m_LocalRotation: {x: 0.33010212, y: -0.6253261, z: 0.33010215, w: 0.625326}
+  m_LocalPosition: {x: -2.1890001, y: 4.45, z: 0.24399996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13367,6 +13371,10 @@ PrefabInstance:
       value: 0.054901946
       objectReference: {fileID: 0}
     - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+      propertyPath: _scoreManager
+      value: 
+      objectReference: {fileID: 316322439}
+    - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
       propertyPath: _percentageTicTacStart
       value: 0.84
       objectReference: {fileID: 0}
@@ -14455,6 +14463,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7222977a3b02c0468dd1785ed3dc633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3222285917080463859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1391219242849329181, guid: b222f40f259139244911d6fba58feb7b, type: 3}
+  m_PrefabInstance: {fileID: 3222285917080463856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3379081711973055696
