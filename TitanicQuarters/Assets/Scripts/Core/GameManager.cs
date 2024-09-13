@@ -46,13 +46,18 @@ public class GameManager : MonoBehaviour
     public static bool isPaused { get => _paused; }
 
     [SerializeField]
-    FMODUnity.StudioEventEmitter _musicSound;
+    public FMODUnity.StudioEventEmitter _musicSound;
 
     [SerializeField]
-    FMODUnity.StudioEventEmitter _buttonSound;
+     FMODUnity.StudioEventEmitter _buttonSound;
 
     public void playUIButton()
     {
+        if (!_buttonSound)
+        {
+            Debug.Log("No button sound");
+            return;
+        }
         _buttonSound?.Play();
     }
 
@@ -140,8 +145,10 @@ public class GameManager : MonoBehaviour
             }
         }
         _currentMachine = nextMachine;
+        _musicSound.SetParameter("MENU PAUSE", 0.0f);
         if (_cameraManager)
         {
+            
             _cameraManager.SwitchCam(MachineToCameraMode());
         }
 

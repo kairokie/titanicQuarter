@@ -48,7 +48,12 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager)
+        {
+            gameManager._musicSound.SetParameter("MENU PAUSE", 1.0f);
+
+        }
     }
 
     public void ScreenShake()
