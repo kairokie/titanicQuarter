@@ -3998,6 +3998,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6864575841605264254, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
+      propertyPath: _cam
+      value: 
+      objectReference: {fileID: 2116314819}
+    - target: {fileID: 6864575841605264254, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
       propertyPath: _notificationSound
       value: 
       objectReference: {fileID: 1034330988}
@@ -11448,8 +11452,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714502439}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08164613, y: -0.8764793, z: 0.44658843, w: 0.16023958}
-  m_LocalPosition: {x: 0.236, y: 4.45, z: -3.345}
+  m_LocalRotation: {x: 0.45019826, y: -0.19772667, z: 0.08967171, w: 0.8661321}
+  m_LocalPosition: {x: 0.259, y: 4.45, z: 3.895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
