@@ -28,6 +28,7 @@ public class CameraManager : MonoBehaviour
     private Dictionary<CameraMode, GameObject> camList;
 
     [SerializeField] private CinemachineImpulseSource _impulseSource;
+    [SerializeField] private FMODUnity.StudioEventEmitter _soundEmitter;
 
 
     private void Awake()
@@ -94,10 +95,13 @@ public class CameraManager : MonoBehaviour
         {
             cam.SetActive(false); //switch off the other cams
         }
-        var emitter = _mainCamera.GetComponent<FMODUnity.StudioEventEmitter>();
-        if (emitter != null)
+        if (_soundEmitter != null)
         {
-            emitter.Play(); 
+            _soundEmitter.Play(); 
+        }
+        else
+        {
+            Debug.LogError("No FMODUnity.StudioEventEmitter found on main camera");
         }
         camMode = nextMode;
         camList[nextMode].SetActive(true); //Activate right cam

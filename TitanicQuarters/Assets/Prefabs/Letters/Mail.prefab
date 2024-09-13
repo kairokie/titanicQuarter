@@ -47,8 +47,9 @@ MonoBehaviour:
   _morseLetterPrefab: {fileID: 74166515612375492, guid: 0b283a00ac4865d46b7bf7ac68780d86, type: 3}
   _nauticLetterPrefab: {fileID: 74166515612375492, guid: 2839d7e354cc36c43a56387374b88ecc, type: 3}
   _militaryLetterPrefab: {fileID: 74166515612375492, guid: d436b89e6c1707b4bbe28ec0b9516eb0, type: 3}
-  timeBetweenLetters: 2
+  timeBetweenLetters: 15
   _numberOfMails: 0
+  _numberOfMailsByWave: 3
   _mailOffset: {x: 0.1, y: 0, z: 1}
   _pickedMailDistanceToCamera: 10
   _isActivated: 1

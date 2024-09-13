@@ -23,6 +23,9 @@ public class Mail : Machine
     [SerializeField]
     int _numberOfMails = 0;
     [SerializeField]
+    int _numberOfMailsByWave = 5;
+
+    [SerializeField]
     Vector3 _mailOffset = new Vector3(0.1f, 0, 1f);
 
     [SerializeField]
@@ -69,6 +72,7 @@ public class Mail : Machine
     private GameObject _cam;
 
 
+    private Coroutine _mailWaveCoroutine;
 
     protected void Awake()
     {
@@ -92,7 +96,7 @@ public class Mail : Machine
         }
     }
 
-    
+
 
     protected override void InputDetection()
     {
@@ -142,7 +146,6 @@ public class Mail : Machine
                     }
                     else if (true /* table test */)
                     {
-                        Debug.Log("Mail dropped on table");
                         _pickedLetter.DropLetter();
                         _pickedLetter = null;
                     }
@@ -156,7 +159,7 @@ public class Mail : Machine
     {
         while (_isRunning)
         {
-            SpawnMail();
+            _mailWaveCoroutine = StartCoroutine(MailWave());
             yield return new WaitForSeconds(timeBetween);
         }
     }
@@ -185,7 +188,6 @@ public class Mail : Machine
             {
                 _machine = FindObjectOfType<Nautical>(true);
                 _prefab = _nauticLetterPrefab;
-
             }
 
             GameObject letter = Instantiate(_prefab);
@@ -195,7 +197,6 @@ public class Mail : Machine
                 mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
                 mailLetter.Machine = _machine;
             }
-            //_notificationSound?.Play();
             float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
             float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
             float xPos = xOffset + _spawnCentre.position.x;
@@ -212,6 +213,23 @@ public class Mail : Machine
         else
         {
             Debug.Log("NO LETTER PREFABS");
+        }
+    }
+
+    IEnumerator MailWave()
+    {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            if (gameManager._currentMachine != this)
+            {
+                _notificationSound?.Play();
+            }
+        }
+        for (int i = 0; i < _numberOfMailsByWave; i++)
+        {
+            SpawnMail();
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
@@ -242,7 +260,7 @@ public class Mail : Machine
     {
         if (machine.TryPutMail(mail))
         {
-            
+
             mail.DropLetter();
             mail.gameObject.SetActive(false);
             //Destroy(mail.gameObject);
@@ -294,10 +312,10 @@ public class Mail : Machine
             string stringSub = subchains[0];
             string intSub = subchains[1];
             int importance = -1;
-            int.TryParse(intSub,out importance);
-            if (stringSub.All(char.IsLetter) && importance != -1 && importance >=0 && importance < Enum.GetNames(typeof(WordSignificance)).Length)
+            int.TryParse(intSub, out importance);
+            if (stringSub.All(char.IsLetter) && importance != -1 && importance >= 0 && importance < Enum.GetNames(typeof(WordSignificance)).Length)
             {
-                _AllWords.Add(new Word(stringSub.ToLower(),(WordSignificance)importance));
+                _AllWords.Add(new Word(stringSub.ToLower(), (WordSignificance)importance));
             }
         }
     }
