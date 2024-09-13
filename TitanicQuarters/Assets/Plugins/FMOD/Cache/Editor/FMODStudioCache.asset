@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9155490978657868524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Other/Bonus Temps
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Other/Bonus Temps
+  Guid:
+    Data1: 1897610442
+    Data2: 1075146871
+    Data3: 1728121774
+    Data4: 1947265178
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1273
 --- !u!114 &-8811995004754915304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,11 +73,38 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/UIBank.bank
   Name: UIBank
   StudioPath: bank:/UIBank
-  lastModified: 638617739402206804
+  lastModified: 638617881043046518
   FileSizes:
   - Name: Desktop
-    Value: 25888
+    Value: 42208
   Exists: 1
+--- !u!114 &-8340719876225415892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuDrapeaux/Drop Flag
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuDrapeaux/Drop Flag
+  Guid:
+    Data1: -605824931
+    Data2: 1266885112
+    Data3: -1794116985
+    Data4: -540724387
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 280
 --- !u!114 &-8129503189310995668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +153,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-7505567998833576142
+--- !u!114 &-6831475259959121322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,14 +163,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sound Design/Erreur
+  m_Name: event:/UI/Click
   m_EditorClassIdentifier: 
-  Path: event:/Sound Design/Erreur
+  Path: event:/UI/Click
   Guid:
-    Data1: 1742721203
-    Data2: 1177056028
-    Data3: 1508608438
-    Data4: 836567655
+    Data1: -10687949
+    Data2: 1287988155
+    Data3: -1047923804
+    Data4: 392474376
+  Banks:
+  - {fileID: -8796060010390675957}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 160
+--- !u!114 &-6195047440768232503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Other/Notification Message
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Other/Notification Message
+  Guid:
+    Data1: -1607054662
+    Data2: 1207127065
+    Data3: 1398181511
+    Data4: 1052139765
   Banks:
   - {fileID: -4507783560010968277}
   IsStream: 0
@@ -125,7 +206,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 446
+  Length: 1701
+--- !u!114 &-5986127771986190725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuDrapeaux/Grab Flag
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuDrapeaux/Grab Flag
+  Guid:
+    Data1: 940804885
+    Data2: 1153325279
+    Data3: 1961694638
+    Data4: 227523826
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 286
+--- !u!114 &-5038711004718204284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Other/Tic Tac
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Other/Tic Tac
+  Guid:
+    Data1: 2034235339
+    Data2: 1190511256
+    Data3: -801033548
+    Data4: 611158791
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10228
 --- !u!114 &-4507783560010968277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,11 +276,38 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/SFXBank.bank
   Name: SFXBank
   StudioPath: bank:/SFXBank
-  lastModified: 638617739402197358
+  lastModified: 638617881043033485
   FileSizes:
   - Name: Desktop
-    Value: 31072
+    Value: 243616
   Exists: 1
+--- !u!114 &-3689007859922339661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuEnigma/Type Writer
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuEnigma/Type Writer
+  Guid:
+    Data1: -597720551
+    Data2: 1283207905
+    Data3: -1445947243
+    Data4: 197565570
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 232
 --- !u!114 &-3351102849984592327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,11 +323,38 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638617739401837284
+  lastModified: 638617881042472205
   FileSizes:
   - Name: Desktop
-    Value: 1376
+    Value: 1488
   Exists: 1
+--- !u!114 &-2741494517775696105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Other/Erreur
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Other/Erreur
+  Guid:
+    Data1: 1742721203
+    Data2: 1177056028
+    Data3: 1508608438
+    Data4: 836567655
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 446
 --- !u!114 &-2298077530422795988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +430,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 186
+--- !u!114 &-516715927684454299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuEnigma/Validation Typewriter
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuEnigma/Validation Typewriter
+  Guid:
+    Data1: -231752079
+    Data2: 1275827225
+    Data3: -558821726
+    Data4: 174067379
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1264
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +479,19 @@ MonoBehaviour:
   - {fileID: -8811995004754915304}
   - {fileID: 5123697259265919275}
   - {fileID: 7283235553213546881}
-  - {fileID: -7505567998833576142}
   - {fileID: -1445691394275289711}
+  - {fileID: -5986127771986190725}
+  - {fileID: -3689007859922339661}
+  - {fileID: 9196572049271491815}
+  - {fileID: -8340719876225415892}
+  - {fileID: -516715927684454299}
+  - {fileID: -2741494517775696105}
+  - {fileID: -6195047440768232503}
+  - {fileID: 5957985199652853344}
+  - {fileID: -9155490978657868524}
+  - {fileID: -5038711004718204284}
+  - {fileID: -6831475259959121322}
+  - {fileID: 7650944515688448920}
   EditorParameters:
   - {fileID: 6443352303395120388}
   - {fileID: -1685016447968696835}
@@ -272,7 +499,7 @@ MonoBehaviour:
   - {fileID: -3351102849984592327}
   StringsBanks:
   - {fileID: 3632451359125061626}
-  cacheTime: 638617739402206804
+  cacheTime: 638617881043046518
   cacheVersion: 131619
 --- !u!114 &357034120706392300
 MonoBehaviour:
@@ -289,10 +516,10 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/MusBank.bank
   Name: MusBank
   StudioPath: bank:/MusBank
-  lastModified: 638617739402187357
+  lastModified: 638617881043006397
   FileSizes:
   - Name: Desktop
-    Value: 5687104
+    Value: 5689056
   Exists: 1
 --- !u!114 &3632451359125061626
 MonoBehaviour:
@@ -309,10 +536,10 @@ MonoBehaviour:
   Path: ../TitanicQuartersFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638617739401847284
+  lastModified: 638617881042487476
   FileSizes:
   - Name: Desktop
-    Value: 1294
+    Value: 1860
   Exists: 1
 --- !u!114 &5123697259265919275
 MonoBehaviour:
@@ -341,6 +568,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 484
+--- !u!114 &5957985199652853344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/MiniJeuDrapeaux/Validation Drapeaux
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/MiniJeuDrapeaux/Validation Drapeaux
+  Guid:
+    Data1: 517607625
+    Data2: 1162457293
+    Data3: 973506487
+    Data4: -1251562653
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 215
 --- !u!114 &6443352303395120388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +646,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 795
+--- !u!114 &7650944515688448920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Switch
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Switch
+  Guid:
+    Data1: 689338444
+    Data2: 1076982268
+    Data3: 1883194796
+    Data4: -1756600177
+  Banks:
+  - {fileID: -8796060010390675957}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 32
 --- !u!114 &8757300280979442490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,3 +697,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &9196572049271491815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sound Design/Other/Paper Crumble
+  m_EditorClassIdentifier: 
+  Path: event:/Sound Design/Other/Paper Crumble
+  Guid:
+    Data1: 1842358576
+    Data2: 1315987895
+    Data3: 1558341546
+    Data4: -1891056654
+  Banks:
+  - {fileID: -4507783560010968277}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1069

@@ -33,7 +33,14 @@ public class FrustrationManager : MonoBehaviour
     [Tooltip("In percents")]
     public float _frustrationPerSeconds;
 
+    [SerializeField]
+    protected FMODUnity.StudioEventEmitter _calmSound;
 
+    [SerializeField]
+    protected FMODUnity.StudioEventEmitter _ticTacSound;
+
+    [SerializeField]
+    protected float _percentageTicTacStart = 0.16f;
 
     void Start()
     {
@@ -53,13 +60,17 @@ public class FrustrationManager : MonoBehaviour
     {
         // Increment frustration
         _frustration += _frustrationPerSeconds / 100f * Time.deltaTime;
+        if(_frustration > 1 - _percentageTicTacStart && !_ticTacSound.IsPlaying())
+        {
+            _ticTacSound?.Play();
+        }
         UpdateFrustrationColor();
     }
 
     public void DecrementFrustrationWithWordSize(int size)
     {
         if (size <= 1) return;
-
+        _calmSound?.Play();
         if (size <= _frustrationLossPerSize.Count)
         {
             _frustration -= _frustrationLossPerSize[size-2] / 100f;

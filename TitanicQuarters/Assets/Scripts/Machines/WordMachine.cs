@@ -39,11 +39,11 @@ public class WordMachine : Machine
 
     protected int _currentLetterIndex = 0;
     protected bool _isEmpty = true;
-
     [SerializeField]
     protected MailLetter _currentMail;
+  
 
-
+    [Header("")]
     //Current text
     protected string _currentText = "";
 
@@ -59,6 +59,12 @@ public class WordMachine : Machine
     //TEST SERIALIZED FIELDS
     [SerializeField]
     float _wordCount = 0;
+
+    [Header("Sounds")]
+    [SerializeField]
+    protected FMODUnity.StudioEventEmitter _validationSound;
+    [SerializeField]
+    protected FMODUnity.StudioEventEmitter _errorSound;
 
     // First Add mail to the queue
 
@@ -138,6 +144,10 @@ public class WordMachine : Machine
         EmptyMail();
         ResetWords();     
         ClearDisplay();
+        if (_validationSound)
+        {
+            _validationSound.Play();
+        }
 
         //if (_mails.Count > 0)
         //{
@@ -177,6 +187,10 @@ public class WordMachine : Machine
     {
         Debug.Log("Incorrect");
         OnIncorrectWord?.Invoke();
+        if (_errorSound)
+        {
+            _errorSound.Play();
+        }
     }
 
     void ResetWord()

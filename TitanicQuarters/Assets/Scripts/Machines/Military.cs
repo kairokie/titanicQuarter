@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Military : WordMachine
 {
+
+    [SerializeField]
+    FMODUnity.StudioEventEmitter _militarySound;
+
     // Temporary text display
     public TextMeshProUGUI _textDisplay;
     public TextMeshProUGUI _questionTextDisplay;
@@ -121,6 +125,7 @@ public class Military : WordMachine
         }
 
         //Correct input
+        _militarySound?.Play();
         CorrectLetter();
         UpdateDisplay();
     }
@@ -138,6 +143,7 @@ public class Military : WordMachine
     {
         OnIncorrectLetter?.Invoke();
         ErrorTimeout();
+        _errorSound?.Play();
         Debug.Log("Typing Error");
         UpdateDisplay();
     }

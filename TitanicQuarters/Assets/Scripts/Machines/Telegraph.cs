@@ -15,7 +15,8 @@ public class Telegraph : WordMachine
     - Checks if the inputs are correct
     - Gives feedback to the player
      */
-
+    [SerializeField]
+    FMODUnity.StudioEventEmitter _telegraphSound;
 
 
     // Temporary text display
@@ -30,6 +31,8 @@ public class Telegraph : WordMachine
 
     [SerializeField]
     private float _errorDelayMax = 0.5f;
+
+    
 
     protected override void Awake()
     {
@@ -96,6 +99,10 @@ public class Telegraph : WordMachine
         }
 
         //Correct input
+        if (_telegraphSound)
+        {
+            _telegraphSound.Play();
+        }
         CorrectLetter();
         UpdateDisplay();
 
@@ -131,6 +138,10 @@ public class Telegraph : WordMachine
     {
         OnIncorrectLetter?.Invoke();
         ErrorTimeout();
+        if (_errorSound)
+        {
+            _errorSound.Play();
+        }
         while (_currentLetterIndex > 0)
         {
             if (_currentText.ElementAt(_currentLetterIndex - 1) == ' ')

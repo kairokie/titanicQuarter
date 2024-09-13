@@ -17,6 +17,8 @@ public class NauticalSpot : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag.TryGetComponent(out NauticalFlag nauticalFlag))
         {
+            Nautical nautical = FindObjectOfType<Nautical>();
+            nautical._nauticDropSound?.Play();
             //
             NauticalSpot tempSpot = nauticalFlag._attachedSpot;
             // NF2 

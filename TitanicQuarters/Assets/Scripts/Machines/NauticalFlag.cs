@@ -18,6 +18,7 @@ public class NauticalFlag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public bool _isSlotDropped = false;
 
+
     private void Start()
     {
         _image = GetComponent<Image>();
@@ -35,6 +36,8 @@ public class NauticalFlag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Nautical nautical = FindObjectOfType<Nautical>();
+        nautical._nauticDragSound?.Play();
         _image.raycastTarget = false;
         _aspectRatioFitter.enabled = false;
         _isSlotDropped = false;
@@ -45,16 +48,20 @@ public class NauticalFlag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             transform.SetParent(_attachedSpot.transform.parent, true);
             _attachedSpot._attachedFlag = null;
         }
+       
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Nautical nautical = FindObjectOfType<Nautical>();
+        nautical._nauticDropSound?.Play();
         _image.raycastTarget = true;
         if (!_isSlotDropped)
         {
             _attachedSpot = null;
             _isSlotDropped = false;
         }
+      
         //_switch = false;
     }
 }

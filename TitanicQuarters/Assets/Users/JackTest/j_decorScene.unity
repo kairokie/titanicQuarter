@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6864575841605264254, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
   m_PrefabInstance: {fileID: 599781257}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1034330986}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 144b6051373bdf541859199952178b70, type: 3}
@@ -3484,13 +3484,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6864575841605264254, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
+      propertyPath: _notificationSound
+      value: 
+      objectReference: {fileID: 1034330988}
+    - target: {fileID: 6864575841605264254, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
       propertyPath: _pickedMailDistanceToCamera
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2367275491121023926, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1034330988}
   m_SourcePrefab: {fileID: 100100000, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
 --- !u!1001 &601767919
 PrefabInstance:
@@ -4272,6 +4279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 703236210}
   - component: {fileID: 703236211}
+  - component: {fileID: 703236214}
+  - component: {fileID: 703236213}
+  - component: {fileID: 703236212}
   m_Layer: 0
   m_Name: MilitaryScript
   m_TagString: Untagged
@@ -4310,8 +4320,12 @@ MonoBehaviour:
   _scoreManager: {fileID: 1563729308}
   _mails: []
   _maxWords: 50
+  _currentMail: {fileID: 0}
   _mailContainer: {fileID: 0}
   _wordCount: 0
+  _validationSound: {fileID: 703236212}
+  _errorSound: {fileID: 703236214}
+  _militarySound: {fileID: 703236213}
   _textDisplay: {fileID: 115012180}
   _questionTextDisplay: {fileID: 2105030993}
   _feedbackTextDisplay: {fileID: 1708785918}
@@ -4344,6 +4358,99 @@ MonoBehaviour:
   - {fileID: 263617462}
   - {fileID: 560615232}
   _errorDelayMax: 0.5
+--- !u!114 &703236212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703236209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -231752079
+      Data2: 1275827225
+      Data3: -558821726
+      Data4: 174067379
+    Path: event:/Sound Design/MiniJeuEnigma/Validation Typewriter
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &703236213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703236209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -597720551
+      Data2: 1283207905
+      Data3: -1445947243
+      Data4: 197565570
+    Path: event:/Sound Design/MiniJeuEnigma/Type Writer
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &703236214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703236209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1742721203
+      Data2: 1177056028
+      Data3: 1508608438
+      Data4: 836567655
+    Path: event:/Sound Design/Other/Erreur
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &737968059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5975,6 +6082,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ba6da52163c07e84da61e7c3e0607b74, type: 3}
   m_PrefabInstance: {fileID: 977541126}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &984332127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8282542206419665303, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+  m_PrefabInstance: {fileID: 2097896133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &990471065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,6 +6097,10 @@ GameObject:
   m_Component:
   - component: {fileID: 990471066}
   - component: {fileID: 990471067}
+  - component: {fileID: 990471069}
+  - component: {fileID: 990471068}
+  - component: {fileID: 990471071}
+  - component: {fileID: 990471070}
   m_Layer: 0
   m_Name: NauticScript
   m_TagString: Untagged
@@ -6023,8 +6139,13 @@ MonoBehaviour:
   _scoreManager: {fileID: 1563729308}
   _mails: []
   _maxWords: 50
+  _currentMail: {fileID: 0}
   _mailContainer: {fileID: 0}
   _wordCount: 0
+  _validationSound: {fileID: 990471071}
+  _errorSound: {fileID: 990471070}
+  _nauticDragSound: {fileID: 990471068}
+  _nauticDropSound: {fileID: 990471069}
   _questionTextDisplay: {fileID: 898333383}
   _feedbackTextDisplay: {fileID: 1363739332}
   _NauticalSpotCenterPosition: {fileID: 71002555}
@@ -6058,6 +6179,130 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c77eeb442bb1c1c46b2fea7e0a35164a, type: 3}
   - {fileID: 21300000, guid: 50debe12c33f62141ba482e908fcfb23, type: 3}
   - {fileID: 21300000, guid: 1f8ed809d70529e4aa4cb56d05323d71, type: 3}
+--- !u!114 &990471068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990471065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 940804885
+      Data2: 1153325279
+      Data3: 1961694638
+      Data4: 227523826
+    Path: event:/Sound Design/MiniJeuDrapeaux/Grab Flag
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &990471069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990471065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -605824931
+      Data2: 1266885112
+      Data3: -1794116985
+      Data4: -540724387
+    Path: event:/Sound Design/MiniJeuDrapeaux/Drop Flag
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &990471070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990471065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1742721203
+      Data2: 1177056028
+      Data3: 1508608438
+      Data4: 836567655
+    Path: event:/Sound Design/Other/Erreur
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &990471071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990471065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 517607625
+      Data2: 1162457293
+      Data3: 973506487
+      Data4: -1251562653
+    Path: event:/Sound Design/MiniJeuDrapeaux/Validation Drapeaux
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1002050622
 GameObject:
   m_ObjectHideFlags: 0
@@ -6362,6 +6607,42 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ba6da52163c07e84da61e7c3e0607b74, type: 3}
   m_PrefabInstance: {fileID: 1017736694}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1034330986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2367275491121023926, guid: bceb56fd17f0a2b419e03927198b1b44, type: 3}
+  m_PrefabInstance: {fileID: 599781257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1034330988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034330986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1607054662
+      Data2: 1207127065
+      Data3: 1398181511
+      Data4: 1052139765
+    Path: event:/Sound Design/Other/Notification Message
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1059534888
 GameObject:
   m_ObjectHideFlags: 0
@@ -9772,8 +10053,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714502439}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08164613, y: -0.8764793, z: 0.44658843, w: 0.16023958}
-  m_LocalPosition: {x: 0.236, y: 4.45, z: -3.345}
+  m_LocalRotation: {x: 0.33010212, y: -0.6253261, z: 0.33010215, w: 0.625326}
+  m_LocalPosition: {x: -2.1890001, y: 4.45, z: 0.24399996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11500,6 +11781,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+      propertyPath: _calmSound
+      value: 
+      objectReference: {fileID: 2097896137}
+    - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
       propertyPath: _colorEnd.a
       value: 1
       objectReference: {fileID: 0}
@@ -11515,6 +11800,10 @@ PrefabInstance:
       propertyPath: _colorEnd.r
       value: 0.5529412
       objectReference: {fileID: 0}
+    - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+      propertyPath: _ticTacSound
+      value: 
+      objectReference: {fileID: 2097896138}
     - target: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
       propertyPath: _colorStart.a
       value: 1
@@ -11630,7 +11919,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8282542206419665303, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2097896138}
+    - targetCorrespondingSourceObject: {fileID: 8282542206419665303, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2097896137}
   m_SourcePrefab: {fileID: 100100000, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
 --- !u!224 &2097896134 stripped
 RectTransform:
@@ -11642,12 +11937,74 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2979023644258125374, guid: 7d191b0540e1f6b40835a356bd7f2b56, type: 3}
   m_PrefabInstance: {fileID: 2097896133}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 984332127}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b33df280de342e2458189d52ab74dc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2097896137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984332127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1897610442
+      Data2: 1075146871
+      Data3: 1728121774
+      Data4: 1947265178
+    Path: event:/Sound Design/Other/Bonus Temps
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2097896138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984332127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2034235339
+      Data2: 1190511256
+      Data3: -801033548
+      Data4: 611158791
+    Path: event:/Sound Design/Other/Tic Tac
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!95 &2099556498 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1602894625720025670, guid: f3b693f60276ea64a91c21b7399daf7e, type: 3}
@@ -11995,6 +12352,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2133528136}
   - component: {fileID: 2133528137}
+  - component: {fileID: 2133528140}
+  - component: {fileID: 2133528139}
+  - component: {fileID: 2133528138}
   m_Layer: 0
   m_Name: TelegraphScript
   m_TagString: Untagged
@@ -12033,13 +12393,110 @@ MonoBehaviour:
   _scoreManager: {fileID: 1563729308}
   _mails: []
   _maxWords: 50
+  _currentMail: {fileID: 0}
   _mailContainer: {fileID: 0}
   _wordCount: 0
+  _validationSound: {fileID: 2133528139}
+  _errorSound: {fileID: 2133528138}
+  _telegraphSound: {fileID: 2133528140}
   _textDisplay: {fileID: 842813634}
   _questionTextDisplay: {fileID: 69535940}
   _feedbackTextDisplay: {fileID: 2070807854}
   _animator: {fileID: 2121401908}
   _errorDelayMax: 0.5
+--- !u!114 &2133528138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133528135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1742721203
+      Data2: 1177056028
+      Data3: 1508608438
+      Data4: 836567655
+    Path: event:/Sound Design/Other/Erreur
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2133528139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133528135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1658911548
+      Data2: 1112278862
+      Data3: -785403244
+      Data4: 1428861483
+    Path: event:/Sound Design/MiniJeuMorse/Validation
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2133528140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133528135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -465300707
+      Data2: 1124419734
+      Data3: 2019601026
+      Data4: 394233998
+    Path: event:/Sound Design/MiniJeuMorse/Morse
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &2142298759
 PrefabInstance:
   m_ObjectHideFlags: 0

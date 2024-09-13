@@ -57,6 +57,9 @@ public class Mail : Machine
     AnimationCurve _mailOvermovementCurve;
     bool _isRunning = true;
 
+    [SerializeField]
+    protected FMODUnity.StudioEventEmitter _notificationSound;
+
 
 
     protected void Awake()
@@ -160,6 +163,7 @@ public class Mail : Machine
             {
                 mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
             }
+            _notificationSound?.Play();
             float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
             float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
             float xPos = xOffset + _spawnCentre.position.x;

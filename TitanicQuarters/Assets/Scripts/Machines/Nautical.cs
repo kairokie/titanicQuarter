@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class Nautical : WordMachine
 {
-
+    [SerializeField]
+    public FMODUnity.StudioEventEmitter _nauticDragSound;
+    [SerializeField]
+    public FMODUnity.StudioEventEmitter _nauticDropSound;
 
     public TextMeshProUGUI _questionTextDisplay;
     public TextMeshProUGUI _feedbackTextDisplay;
@@ -78,7 +81,6 @@ public class Nautical : WordMachine
 
             spot._distanceBetweenSpots = _distanceBetweenSpots;
             spot._previewLetter.text = _currentLatinWord[i].ToString();
-
             _nauticalSpots.Add(spot);
         }
 
@@ -87,7 +89,6 @@ public class Nautical : WordMachine
             NauticalFlag flag = Instantiate(_nauticalFlagPrefab, _NauticalSpotCenterPosition).GetComponent<NauticalFlag>();
             flag._flagId = Langages.characterToInt(_currentLatinWord[i]);
             flag.GetComponent<Image>().sprite = _nauticalAlphabet[flag._flagId];
-
             _nauticalFlags.Add(flag);
         }
 
