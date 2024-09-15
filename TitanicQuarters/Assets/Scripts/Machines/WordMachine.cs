@@ -115,9 +115,9 @@ public class WordMachine : Machine
     }
     public void SendWord()
     {
+        if (!_currentMail) { return; }
         Debug.Log("Word: " + _currentText);
         Debug.Log("Expected Word: " + (_doMatchToLatin ? _currentLatinWord : _currentMachineWord));
-        if (!_currentMail) { return; }
 
         if (_currentText == (_doMatchToLatin ? _currentLatinWord : _currentMachineWord))
         {
