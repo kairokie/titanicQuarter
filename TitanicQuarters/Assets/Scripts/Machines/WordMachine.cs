@@ -117,6 +117,8 @@ public class WordMachine : Machine
     {
         Debug.Log("Word: " + _currentText);
         Debug.Log("Expected Word: " + (_doMatchToLatin ? _currentLatinWord : _currentMachineWord));
+        if (!_currentMail) { return; }
+
         if (_currentText == (_doMatchToLatin ? _currentLatinWord : _currentMachineWord))
         {
             CorrectWord();
