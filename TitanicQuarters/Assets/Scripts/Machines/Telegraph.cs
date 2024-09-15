@@ -143,10 +143,8 @@ public class Telegraph : WordMachine
         OnIncorrectLetter?.Invoke();
         ErrorTimeout();
         
-        if (_errorSound)
-        {
-            _errorSound.Play();
-        }
+        _errorSound?.Play();
+        
         while (_currentLetterIndex > 0)
         {
             if (_currentText.ElementAt(_currentLetterIndex - 1) == ' ')
@@ -155,6 +153,8 @@ public class Telegraph : WordMachine
             }
             _currentLetterIndex--;
         }
+        Debug.Log("old substring " + _currentText);
+
         _currentText = _currentText.Substring(0, _currentLetterIndex);
         UpdateDisplay();
 
@@ -216,7 +216,9 @@ public class Telegraph : WordMachine
     }
     public override void ErrorWordDisplay()
     {
+        _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "Incorrect!";
+        _cam.GetComponent<CameraManager>().ScreenShake();
     }
 
 

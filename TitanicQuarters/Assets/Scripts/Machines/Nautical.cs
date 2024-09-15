@@ -122,6 +122,7 @@ public class Nautical : WordMachine
         }
 
         SendWord();
+        _currentText = "";
     }
 
     protected override void InputDetection()

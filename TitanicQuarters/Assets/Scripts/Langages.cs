@@ -142,7 +142,7 @@ static class Langages
 
     public static List<string> militaryList = new List<string>()
     {
-        {"Alpha "},
+        {"Alpha"},
         {"Bravo"},
         {"Charlie"},
         {"Delta"},

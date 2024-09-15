@@ -176,6 +176,7 @@ public class Military : WordMachine
     }
     public override void ErrorWordDisplay()
     {
+        _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "Incorrect!";
         _cam.GetComponent<CameraManager>().ScreenShake();
     }

@@ -127,7 +127,6 @@ public class WordMachine : Machine
         {
             IncorrectWord();
         }
-        ResetWord();
     }
 
     void ResetWords()
