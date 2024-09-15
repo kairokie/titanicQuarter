@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         _military.gameObject.SetActive(false);
         _nautical.gameObject.SetActive(false);
         _mail.gameObject.SetActive(false);
+        _frustrationManager.gameObject.SetActive(false);
 
         //if (_currentMachine)
         //{
@@ -265,6 +266,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         UnPause();
+        _frustrationManager.gameObject.SetActive(true);
         ChangeGameMode(_mail);
     }
 }

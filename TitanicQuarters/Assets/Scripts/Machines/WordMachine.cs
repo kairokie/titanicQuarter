@@ -78,6 +78,7 @@ public class WordMachine : Machine
         _wordCount = _mails.Count;
         _isEmpty = false;
     }
+
     // Then sometime pop the queue and stock it in the current mail
     void PopMail ()
     {
@@ -223,10 +224,6 @@ public class WordMachine : Machine
             AddMail2nd(mail);
             return true;
         }
-        else
-        {
-            Debug.Log("mail.Machine: " + mail.Machine + " | this =  " + this + " MaxWords = " + MaxMails);
-        }
         return false;
     }
 
@@ -242,7 +239,6 @@ public class WordMachine : Machine
         base.InputDetection();
         if (_currentMail == null && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("InputDetection WM");
             PopMail();
         }
     }
