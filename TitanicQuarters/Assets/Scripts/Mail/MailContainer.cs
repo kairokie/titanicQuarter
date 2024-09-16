@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -39,14 +38,15 @@ public class MailContainer : MonoBehaviour
         n = Mathf.Clamp(n, 0, (int)_mailDisplayLimit);
         foreach (var mail in _mailQueue)
         {
+#if (UNITY_EDITOR) 
+
             if (!EditorApplication.isPlaying)
             {
                 DestroyImmediate(mail);
+                break;
             }
-            else
-            {
-                Destroy(mail);
-            }
+#endif
+            Destroy(mail);
         }
 
         for (int i = 0; i < n; i++)
@@ -57,6 +57,8 @@ public class MailContainer : MonoBehaviour
         }
     }
 
+#if (UNITY_EDITOR) 
+
     private void OnDrawGizmos()
     {
         if (!EditorApplication.isPlaying)
@@ -64,6 +66,8 @@ public class MailContainer : MonoBehaviour
             SetNumberOfMails(_CurrentNbrMail);
         }
     }
+
+#endif
 
     Vector3 GetPosition(int i)
     {

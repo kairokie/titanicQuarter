@@ -1,6 +1,7 @@
+
+#if (UNITY_EDITOR) 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 [CustomEditor(typeof(FrustrationManager))]
@@ -13,3 +14,4 @@ public class FrustrationManagerEditor : Editor
         GUILayout.Label($"Time to fill from empty : {100f / frustrationManager._frustrationPerSeconds}");
     }
 }
+#endif

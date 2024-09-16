@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mail : Machine
@@ -83,7 +82,7 @@ public class Mail : Machine
     // Start is called before the first frame update
     void Start()
     {
-        ReadTextFile();
+        ReadTextFile2();
         _mailArrivalCoroutine = StartCoroutine(LetterArrivalCoroutine(timeBetweenLetters));
     }
 
@@ -305,6 +304,29 @@ public class Mail : Machine
         while ((line = reader.ReadLine()) != null)
         {
             string[] subchains = line.Split(' ');
+            if (subchains.Length != 2)
+            {
+                Debug.LogError("Error in WordList.txt");
+                return;
+            }
+            string stringSub = subchains[0];
+            string intSub = subchains[1];
+            int importance = -1;
+            int.TryParse(intSub, out importance);
+            if (stringSub.All(char.IsLetter) && importance != -1 && importance >= 0 && importance < Enum.GetNames(typeof(WordSignificance)).Length)
+            {
+                _AllWords.Add(new Word(stringSub.ToLower(), (WordSignificance)importance));
+            }
+        }
+    }
+
+    void ReadTextFile2()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>("WordList");
+        string[] lines = textAsset.text.Split('\n');
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string[] subchains = lines[i].Split(' ');
             if (subchains.Length != 2)
             {
                 Debug.LogError("Error in WordList.txt");
