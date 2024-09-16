@@ -66,9 +66,6 @@ public class Mail : Machine
     [SerializeField]
     protected FMODUnity.StudioEventEmitter _notificationSound;
 
-    //Screen shake
-    [SerializeField]
-    private GameObject _cam;
 
 
     private Coroutine _mailWaveCoroutine;
@@ -217,14 +214,9 @@ public class Mail : Machine
 
     IEnumerator MailWave()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        if (gameManager != null)
-        {
-            if (gameManager._currentMachine != this)
-            {
-                _notificationSound?.Play();
-            }
-        }
+
+        _notificationSound?.Play();
+        
         for (int i = 0; i < _numberOfMailsByWave; i++)
         {
             SpawnMail();
@@ -236,7 +228,7 @@ public class Mail : Machine
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(_spawnCentre.position, new Vector3(_spawnAreaLength * 2, _spawnHeight, _spawnAreaWidth * 2));
+        Gizmos.DrawWireCube(_spawnCentre.position + new Vector3(0, _spawnHeight / 2f, 0), new Vector3(_spawnAreaLength * 2, _spawnHeight, _spawnAreaWidth * 2));
     }
     private void MoveMail()
     {
@@ -267,7 +259,7 @@ public class Mail : Machine
         }
         else
         {
-            _cam.GetComponent<CameraManager>().ScreenShake();
+            _cam.ScreenShake();
         }
     }
 

@@ -28,10 +28,6 @@ public class Nautical : WordMachine
     [SerializeField]
     private List<Sprite> _nauticalAlphabet = new List<Sprite>(26);
 
-    [SerializeField]
-    private GameObject _cam;
-
-
 
     private bool _holdingFlag = false;
 
@@ -226,7 +222,7 @@ public class Nautical : WordMachine
     public override void Error()
     {
         _feedbackTextDisplay.text = "";
-        _cam.GetComponent<CameraManager>().ScreenShake();
+        _cam.ScreenShake();
     }
 
     public override void Correct()
@@ -241,6 +237,6 @@ public class Nautical : WordMachine
     public override void ErrorWordDisplay()
     {
         _feedbackTextDisplay.text = "Incorrect!";
-        _cam.GetComponent<CameraManager>().ScreenShake();
+        _cam.ScreenShake();
     }
 }

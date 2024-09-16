@@ -3,6 +3,11 @@ using UnityEngine;
 public class Machine : MonoBehaviour
 {
 
+
+    //Screen shake
+    [SerializeField]
+    protected CameraManager _cam;
+
     private void Awake()
     {
     }

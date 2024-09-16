@@ -29,10 +29,6 @@ public class Telegraph : WordMachine
     [SerializeField]
     private float _errorDelayMax = 0.5f;
 
-    [SerializeField]
-    private GameObject _cam;
-
-
 
     protected override void Awake()
     {
@@ -197,7 +193,7 @@ public class Telegraph : WordMachine
     {
         _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "";
-        _cam.GetComponent<CameraManager>().ScreenShake();
+        _cam.ScreenShake();
     }
 
     public override void Correct()
@@ -214,7 +210,7 @@ public class Telegraph : WordMachine
     {
         _textDisplay.color = Color.red;
         _feedbackTextDisplay.text = "Incorrect!";
-        _cam.GetComponent<CameraManager>().ScreenShake();
+        _cam.ScreenShake();
     }
 
 
