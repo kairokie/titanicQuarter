@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MailContainer : MonoBehaviour
@@ -7,13 +8,10 @@ public class MailContainer : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField]
-    private WordMachine _wordMachine;
-
-    [SerializeField]
     private GameObject _mailPrefab;
 
-    [SerializeField] 
-    float _mailDisplayLimit = 5;
+    [SerializeField]
+    int _mailDisplayLimit = 5;
 
     [SerializeField]
     Transform _queueStart;
@@ -24,10 +22,10 @@ public class MailContainer : MonoBehaviour
     private List<GameObject> _mailQueue = new List<GameObject>();
 
     public int _CurrentNbrMail = 0;
-    
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,22 +39,31 @@ public class MailContainer : MonoBehaviour
         n = Mathf.Clamp(n, 0, (int)_mailDisplayLimit);
         foreach (var mail in _mailQueue)
         {
-            Destroy(mail);
-            //DestroyImmediate(mail);
+            if (!EditorApplication.isPlaying)
+            {
+                DestroyImmediate(mail);
+            }
+            else
+            {
+                Destroy(mail);
+            }
         }
 
         for (int i = 0; i < n; i++)
         {
-            GameObject mail = Instantiate(_mailPrefab, GetPosition(i), Quaternion.Euler(-65,0,0));
+            GameObject mail = Instantiate(_mailPrefab, GetPosition(i), transform.rotation * Quaternion.Euler(-35f, 180f, 0));
             mail.transform.SetParent(transform);
             _mailQueue.Add(mail);
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    SetNumberOfMails(_CurrentNbrMail);
-    //}
+    private void OnDrawGizmos()
+    {
+        if (!EditorApplication.isPlaying)
+        {
+            SetNumberOfMails(_CurrentNbrMail);
+        }
+    }
 
     Vector3 GetPosition(int i)
     {
@@ -64,7 +71,7 @@ public class MailContainer : MonoBehaviour
         return _queueStart.position + step * i;
     }
 
-    
+
 
 
 }

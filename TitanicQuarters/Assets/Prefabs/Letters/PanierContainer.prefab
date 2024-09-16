@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3427396833842998311}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.086}
+  m_LocalPosition: {x: 0.0017, y: 0.05, z: -0.0805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 8103020579016619911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.0867}
+  m_LocalPosition: {x: 0.0003, y: 0.05, z: 0.0735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -157,11 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5179f53a81a33f45b3662ff21e020df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wordMachine: {fileID: 0}
-  _mailPrefab: {fileID: 7475832706592124519, guid: 47b9b9a1ea47e0b4f8e705f666f64109, type: 3}
+  _mailPrefab: {fileID: 74166515612375492, guid: 1d560de474c8dd345b274d483858e699, type: 3}
   _mailDisplayLimit: 5
   _queueStart: {fileID: 8908402711117118752}
   _queueEnd: {fileID: 7517188681491514496}
+  _CurrentNbrMail: 0
 --- !u!4 &8783424622057703693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3980311134679975469, guid: 7ebf1b02fac740442bb8288807c832cb, type: 3}
