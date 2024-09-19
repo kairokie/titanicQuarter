@@ -29,8 +29,10 @@ public class Mail : Machine
 
     [SerializeField]
     float _pickedMailDistanceToCamera = 10.0f;
+    [SerializeField]
+    float _pickedMailDistanceToSurface = 1f;
 
-    // List of all possible wordsµ
+    // List of all possible words
     [SerializeField]
     List<Word> _AllWords = new List<Word>();
     public List<Word> Words { get => _AllWords; }
@@ -193,6 +195,7 @@ public class Mail : Machine
                 mailLetter.Word = _AllWords[UnityEngine.Random.Range(0, _AllWords.Count)];
                 mailLetter.Machine = _machine;
             }
+
             float xOffset = UnityEngine.Random.Range(-_spawnAreaLength, _spawnAreaLength);
             float zOffset = UnityEngine.Random.Range(-_spawnAreaWidth, _spawnAreaWidth);
             float xPos = xOffset + _spawnCentre.position.x;
@@ -233,6 +236,10 @@ public class Mail : Machine
     private void MoveMail()
     {
         Vector3 proj = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _pickedMailDistanceToCamera)) /*+ Camera.main.transform.forward * 2*/;
+        Vector3 dir = proj - Camera.main.transform.position;
+
+        if (Physics.Raycast(Camera.main.transform.position, dir, out RaycastHit hitInfo, dir.magnitude * 1.1f))
+            proj = hitInfo.point - _pickedMailDistanceToSurface * dir.normalized;
 
         if (proj != _nextMailPosition)
         {

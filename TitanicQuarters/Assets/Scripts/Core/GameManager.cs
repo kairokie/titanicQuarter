@@ -1,16 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
-public enum GameMode
-{
-    MAIL,
-    TELEGRAPH,
-    TYPEWRITER,
-    MILITARY,
-    NAUTIC
-}
-
 [RequireComponent(typeof(ScoreManager))]
 public class GameManager : MonoBehaviour
 {
@@ -32,10 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CameraManager _cameraManager;
 
-    [SerializeField] // TODO : Currently unused and prefer to use the _currentMachine
-    GameMode _gameMode;
-
-    public Machine _currentMachine;
+    private Machine _currentMachine;
 
     static bool _paused = false;
 
@@ -97,28 +84,12 @@ public class GameManager : MonoBehaviour
     {
         _scoreManager = GetComponent<ScoreManager>();
 
-        _cameraManager = FindObjectOfType<CameraManager>();
-
-        if (_telegraph)
-        {
-            //_telegraph.OnCorrectWord += _scoreManager.IncrementScore;
-            //_telegraph.OnIncorrectWord += _frustrationManager.IncrementFrustration;
-            //_telegraph.OnCorrectWord += _frustrationManager.DecrementFrustration;
-        }
         _telegraph.gameObject.SetActive(false);
         _military.gameObject.SetActive(false);
         _nautical.gameObject.SetActive(false);
         _mail.gameObject.SetActive(false);
         _frustrationManager.gameObject.SetActive(false);
 
-        //if (_currentMachine)
-        //{
-        //    ChangeGameMode(_currentMachine);
-        //}
-        //else
-        //{
-        //    ChangeGameMode(_mail);
-        //}
     }
 
     // Update is called once per frame
