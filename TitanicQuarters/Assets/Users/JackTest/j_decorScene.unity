@@ -4948,7 +4948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873a2faef8510c42b860b4d04897d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cam: {fileID: 2116314819}
+  _cam: {fileID: 2116314820}
   _frustrationManager: {fileID: 2097896135}
   _scoreManager: {fileID: 316322439}
   _mails: []
@@ -6921,7 +6921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ac11e657b8bed448f2b9f2cd025a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cam: {fileID: 2116314819}
+  _cam: {fileID: 2116314820}
   _frustrationManager: {fileID: 2097896135}
   _scoreManager: {fileID: 316322439}
   _mails: []
@@ -14163,7 +14163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e6a57e196d15c49b6e9e6e1ac0ddbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cam: {fileID: 2116314819}
+  _cam: {fileID: 2116314820}
   _frustrationManager: {fileID: 2097896135}
   _scoreManager: {fileID: 316322439}
   _mails: []

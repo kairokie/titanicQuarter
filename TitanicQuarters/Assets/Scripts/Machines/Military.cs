@@ -84,7 +84,6 @@ public class Military : WordMachine
 
     protected override void ClearDisplay()
     {
-        Debug.Log("Clear display");
         if (_textDisplay != null)
         {
             _textDisplay.text = "";
