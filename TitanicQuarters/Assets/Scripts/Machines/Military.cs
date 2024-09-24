@@ -60,7 +60,7 @@ public class Military : WordMachine
 
     protected override void InputDetection()
     {
-        if (_currentMail)
+        if (_currentMail && _errorDelay <= 0)
         {
             for (KeyCode i = KeyCode.A; i <= KeyCode.Z; i++)
             {

@@ -160,7 +160,7 @@ public class Telegraph : WordMachine
 
     protected override void InputDetection()
     {
-        if (_currentMail && _errorDelay <=0 )
+        if (_currentMail && _errorDelay <= 0)
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
